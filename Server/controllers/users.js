@@ -29,6 +29,28 @@ const updateUser = async(req , res)=>{
         res.status(StatusCodes.OK).json({user});
 }
 
+//upload avatar
+const uploadAvatar = async (req , res)=>{
+    console.log(req.file);
+    
+    if (!req.file) {
+        return res.status(StatusCodes.BAD_REQUEST).json({ error: "Please upload an image" });
+    }
+    
+    
+    const user = await User.findById(req.user.userID);
+    if(!user) throw new NotFound(`no user with the id ${req.user.userID}`);
+
+    if (user.avatar && user.avatar.publicId) {
+        await cloudinary.uploader.destroy(user.avatar.publicId);
+      }
+
+      user.avatar = {url: req.file.path , publicId: req.file.filename};
+      await user.save();
+
+      res.status(StatusCodes.OK).json({avatar : user.avatar.url});
+}
+
 
 //delete user
 const deleteUser = async(req , res)=>{
@@ -42,5 +64,6 @@ module.exports = {
     getAllUsers,
     getSingleUser,
     updateUser,
+    uploadAvatar,
     deleteUser,
 }
