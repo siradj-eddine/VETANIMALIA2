@@ -9,7 +9,7 @@ const {
     createProduct,
     updateProduct,
     deleteProduct
-} = require("../controllers/Products");
+} = require("../controllers/products");
 
 router.get("/" , getAllProducts)
 router.get("/:id" , getSingleProduct);

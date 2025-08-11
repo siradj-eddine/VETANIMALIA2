@@ -24,6 +24,7 @@ const authRouter = require("./routes/auth");
 const usersRouter = require("./routes/users");
 const productsRouter = require("./routes/products");
 const ordersRouter = require("./routes/orders");
+const appointmentsRouter = require("./routes/appointments");
 
 
 //error handler middleware
@@ -53,7 +54,7 @@ app.use("/api/v1/auth" ,authRouter);
 app.use("/api/v1/users" ,authMiddleware , adminAuth ,usersRouter);
 app.use("/api/v1/products" , productsRouter);
 app.use("/api/v1/orders" ,ordersRouter);
-
+app.use("/api/v1/appointments", authMiddleware, appointmentsRouter);
 
 //error handler middleware
 app.use(errorHandlerMiddleware);

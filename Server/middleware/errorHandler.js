@@ -19,7 +19,8 @@ const errorHandlerMiddleware = (err , req , res , next) =>{
 
 
     if(err.name == "CastError"){
-        customErr.msg = `no item with the id : ${err.value}`
+        if(err.path == "_id") customErr.msg = `No item with the id : ${err.value._id}`;
+        else customErr.msg = `no item with the id : ${err.value}`
         customErr.statusCode = StatusCodes.NOT_FOUND;
     }
 
