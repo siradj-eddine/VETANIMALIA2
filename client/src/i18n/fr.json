@@ -1,0 +1,245 @@
+{
+    "hero": {
+    "altText": "Chien",
+    "title1": "Cabinet vétérinaire",
+    "title2": "VETANIMALIA",
+    "doctor": "Dr. Ilyes Kitouni",
+    "address": "Cabinet vétérinaire uv 17 Ali Mendjeli, Constantine",
+    "phone": "0770807185",
+    "openingHours": "Ouvert 24 heures sur 24",
+    "qrAlt": "QR Code pour contact",
+    "qrTooltip": "Scannez pour nos coordonnées"
+  },
+  "about": {
+    "title": "Bienvenue chez VETANIMALIA",
+    "aboutUsImageAlt": "À propos",
+    "aboutUsTitle": "À propos de nous",
+    "aboutUsDescription": "VetAnimalia est une plateforme dédiée aux amoureux des animaux qui simplifie les soins pour vos compagnons. Nous offrons tout ce dont votre animal a besoin pour une vie saine et heureuse."
+  },
+  "infos": {
+    "1": {
+      "title": "Notre histoire",
+      "description": "Notre cabinet vétérinaire s'est engagé à fournir des soins exceptionnels aux animaux de compagnie. Notre équipe passionnée travaille chaque jour pour améliorer la santé et le bien-être de vos compagnons.",
+      "buttonText": "En savoir plus"
+    },
+    "2": {
+      "title": "Rejoignez-nous",
+      "description": "Nous sommes une équipe diversifiée de professionnels dévoués. Si vous partagez notre passion pour les soins animaliers, découvrez nos opportunités de carrière et stages disponibles.",
+      "buttonText": "En savoir plus"
+    },
+    "3": {
+      "title": "Notre équipe",
+      "description": "Rencontrez notre équipe de vétérinaires, techniciens et personnel de soutien. Chaque membre apporte son expertise unique pour offrir les meilleurs soins possibles à vos animaux.",
+      "buttonText": "En savoir plus"
+    },
+    "4": {
+      "title": "Récompenses",
+      "description": "Notre engagement envers l'excellence a été reconnu par plusieurs distinctions dans le domaine vétérinaire, y compris le Prix d'Excellence en Médecine Animale décerné en 2022.",
+      "buttonText": "En savoir plus"
+    }
+  },
+  "servicesSection": {
+    "title": "Nos services"
+  },
+  "services2": {
+    "1": {
+      "title": "Chirurgie et Soins",
+      "description": "Chez VITANIMALIA, notre équipe chirurgicale expérimentée assure des interventions sécurisées et des soins post-opératoires attentifs pour le bien-être de votre compagnon.",
+      "buttonText": "En savoir plus"
+    },
+    "2": {
+      "title": "Consultation et Diagnostic",
+      "description": "VITANIMALIA offre des consultations approfondies et un diagnostic précis grâce à des outils modernes, pour un plan de traitement adapté à votre animal.",
+      "buttonText": "En savoir plus"
+    }
+  },
+  "services": {
+    "3": {
+      "title": "Toilettage",
+      "description": "VITANIMALIA offre des services de toilettage professionnels pour l'hygiène, la santé et le confort du pelage de chaque animal."
+    },
+    "4": {
+      "title": "Hospitalisation et Gardiennage",
+      "description": "VITANIMALIA assure des soins attentifs en hospitalisation et un service de gardiennage fiable pour la tranquillité d'esprit des propriétaires."
+    },
+    "5": {
+      "title": "Prendre rendez-vous",
+      "description": "Planifiez une consultation avec nos vétérinaires experts pour un examen complet de votre animal. Nous offrons des soins préventifs, des diagnostics précis et des traitements personnalisés pour toutes les espèces animales.",
+      "buttonText": "Réserver"
+    }
+  },
+  "tipsSection": {
+  "imageAlt": "chien",
+  "title": "Conseils pour vos animaux",
+  "description1": "Chez VITANIMALIA, nous reconnaissons que prodiguer des soins exceptionnels à votre compagnon animal va bien au-delà de la simple résolution de problèmes de santé immédiats. Notre section Conseils dédiée se présente comme une ressource complète et professionnellement élaborée, conçue pour vous donner les connaissances et les stratégies pratiques nécessaires afin de favoriser une vie de bien-être pour votre animal bien-aimé. Au sein de ces pages, vous découvrirez des articles approfondis et des éclairages d'experts couvrant un large éventail de sujets, méticuleusement rédigés par notre équipe de professionnels vétérinaires et de spécialistes du comportement animal.",
+  "description2": "Qu'il s'agisse de démystifier des méthodologies de dressage complexes et d'offrir des conseils nutritionnels fondés sur des preuves, ou de fournir des stratégies proactives pour l'enrichissement environnemental et la reconnaissance précoce de potentiels problèmes de santé, VITANIMALIA s'engage à vous donner la confiance et l'expertise nécessaires pour naviguer dans chaque aspect du parcours de vie de votre animal. Nous nous efforçons d'être votre partenaire de confiance pour cultiver un lien fort et sain avec votre animal, en assurant son bonheur et votre tranquillité d'esprit grâce à une prise de décision éclairée et une compréhension plus profonde de ses besoins uniques."
+},
+  "blogSection": {
+    "title": "Blog",
+    "subtitle": "N'oubliez pas de prendre soin de vos animaux !",
+    "catImageAlt": "chat"
+  },
+  "blogCategories": {
+    "1": {
+      "title": "Aboiements"
+    },
+    "2": {
+      "title": "Socialisation"
+    },
+    "3": {
+      "title": "Nutrition"
+    }
+  },
+  "navbar": {
+    "about": "À propos",
+    "services": "Services",
+    "products": "Produits",
+    "contact": "Contact",
+    "login": "Se connecter",
+    "appointment": "Rendez-vous"
+  },
+  "footer": {
+    "mailbox": "MailBox",
+    "placeholder": "Entrez votre email",
+    "submit": "Soumettre",
+    "copyright": "© 2025 Par QuarCode"
+  },
+  "home": {
+    "title": "Cabinet vétérinaire",
+    "clinic_name": "VETANIMALIA",
+    "welcome": "Bienvenue chez VETANIMALIA",
+    "services_title": "Nos services",
+    "blog_title": "Blog",
+    "blog_subtitle": "N'oubliez pas de prendre soin de vos animaux !",
+    "address": "Cabinet vétérinaire uv 17 Ali Mendjeli, Constantine",
+    "phone": "0770807185",
+    "opening_hours": "Ouvert 24 heures sur 24",
+    "qr_tooltip": "Scannez pour nos coordonnées",
+    "hero_image_alt": "Chien",
+    "qr_alt": "QR Code pour contact",
+    "tips_title": "Conseils pour vos animaux",
+    "tips_description": "Chez VITANIMALIA, nous reconnaissons que prodiguer des soins exceptionnels à votre compagnon animal va bien au-delà de la simple résolution de problèmes de santé immédiats. Notre section \"Conseils\" dédiée se présente comme une ressource complète et professionnellement élaborée, conçue pour vous donner les connaissances et les stratégies pratiques nécessaires afin de favoriser une vie de bien-être pour votre animal bien-aimé.",
+    "tips_description_extended": "Qu'il s'agisse de démystifier des méthodologies de dressage complexes et d'offrir des conseils nutritionnels fondés sur des preuves, ou de fournir des stratégies proactives pour l'enrichissement environnemental et la reconnaissance précoce de potentiels problèmes de santé, VITANIMALIA s'engage à vous donner la confiance et l'expertise nécessaires pour naviguer dans chaque aspect du parcours de vie de votre animal.",
+    "tips_image_alt": "Chien",
+    "blog_image_alt": "Chat",
+    "blog_category1": "Aboiements",
+    "blog_category2": "Socialisation",
+    "blog_category3": "Nutrition",
+    "about_image_alt": "À propos"
+  },
+  "About": {
+    "our_story": "Notre Histoire",
+    "join_us": "Rejoignez-Nous",
+    "read_more": "Lire la suite",
+    "join_button": "Rejoignez-Nous",
+    "our_story_desc": "Chez VETANIMALIA, nous sommes passionnés par le bien-être des animaux. Notre équipe dévouée s'engage à fournir les meilleurs soins possibles.",
+    "join_us_desc": "Rejoignez notre équipe dynamique et contribuez à faire une différence dans la vie des animaux."
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Notre équipe est à votre disposition pour répondre à toutes vos questions",
+    "clinic_info": "Informations du cabinet",
+    "address": "Adresse",
+    "address_value": "Cabinet vétérinaire uv 17 Ali Mendjeli, Constantine, Algérie",
+    "phone": "Téléphone",
+    "hours": "Horaires d'ouverture",
+    "hours_value": "24H/24",
+    "email": "Email",
+    "follow": "Suivez-nous",
+    "location": "Localisation",
+    "emergency": "Service d'urgence 24h/24",
+    "emergency_text": "En cas d'urgence, appelez-nous directement au",
+    "form_title": "Envoyez-nous un message",
+    "full_name": "Nom complet",
+    "subject": "Sujet",
+    "message": "Message",
+    "send": "Envoyer le message",
+    "doctor_title":"Vétérinaire principal"
+  },
+  "login": {
+    "title": "Connexion",
+    "subtitle": "Accédez à votre espace personnel VETANIMALIA",
+    "welcome": "Bienvenue de retour",
+    "email": "Email",
+    "password": "Mot de passe",
+    "remember": "Se souvenir de moi",
+    "login": "Se connecter",
+    "no_account": "Pas encore de compte ?",
+    "signup": "S'inscrire",
+    "or": "ou"
+    
+  },
+  "Services": {
+    "title": "Nos Services",
+    "subtitle": "Des soins complets et attentionnés pour vos compagnons à quatre pattes",
+    "radiography": "Radiographie et Échographie",
+    "surgery": "Chirurgie et Soins",
+    "vaccination": "Vaccination et Puce Électronique",
+    "consultation": "Consultation et Diagnostic",
+    "grooming": "Toilettage et Détartrage",
+    "nutrition": "Alimentation et Accessoires",
+    "emergency": "Urgences",
+    "hospitalization": "Hospitalisation et Gardiennage",
+    "radiography_item1": "Radiographies pour détecter les blessures internes ou les anomalies.",
+    "radiography_item2": "Échographies utilisées pour examiner les organes et tissus internes.",
+    "radiography_item3": "Méthodes non invasives offrant des résultats fiables.",
+    "surgery_item1": "Procédures chirurgicales mineures et complexes réalisées par des experts.",
+    "surgery_item2": "Soins postopératoires pour garantir une récupération rapide et efficace.",
+    "surgery_item3": "Gestion des douleurs et surveillance constante.",
+    "vaccination_item1": "Vaccins pour prévenir les maladies infectieuses et évitables.",
+    "vaccination_item2": "Implantation de puces électroniques pour identifier les animaux en toute sécurité.",
+    "vaccination_item3": "Suivi et conseils pour maintenir la santé préventive.",
+    "consultation_item1": "Examen physique complet pour détecter les problèmes de santé des animaux.",
+    "consultation_item2": "Analyse clinique et diagnostic précis.",
+    "consultation_item3": "Conseils médicaux adaptés pour un suivi personnalisé.",
+    "grooming_item1": "Toilettage complet (bain, coupe de poils, nettoyage des oreilles).",
+    "grooming_item2": "Nettoyage dentaire professionnel pour éliminer le tartre et prévenir les maladies buccales.",
+    "grooming_item3": "Services pour préserver la santé et l’apparence des animaux.",
+    "nutrition_item1": "Fourniture d’aliments adaptés aux besoins nutritionnels spécifiques.",
+    "nutrition_item2": "Accessoires de qualité tels que jouets, colliers et laisses.",
+    "nutrition_item3": "Conseils personnalisés pour le bien-être quotidien des animaux.",
+    "hospitalization_item1": "Services d’hospitalisation avec soins intensifs et surveillance vétérinaire.",
+    "hospitalization_item2": "Hébergement confortable pour les animaux en convalescence.",
+    "hospitalization_item3": "Gardiennage personnalisé en l’absence des propriétaires.",
+    "catHotel": "Hôtel pour chats",
+    "catHotel_item1": "Suites privées avec literie confortable",
+    "catHotel_item2": "Temps de jeu quotidien et interaction sociale",
+    "catHotel_item3": "Surveillance et soins 24h/24 et 7j/7",
+    "catHotel_alt": "Chambre luxueuse d'hôtel pour chats"
+
+
+    
+  },
+  "appointment": {
+    "title": "Prendre un Rendez-vous",
+    "subtitle": "Planifiez une visite pour votre compagnon bien-aimé chez VETANIMALIA",
+    "owner": "Nom du Propriétaire",
+    "pet": "type d'animal",
+    "date": "Date du Rendez-vous",
+    "breed": "Race de l'Animal",
+    "breed_options": {
+      "dog": "Chien",
+      "cat": "Chat",
+      "bird": "Oiseau",
+      "rodent": "Rongeur",
+      "other": "Autre"
+      
+
+    },
+      "success_message": "Rendez-vous confirmé avec succès !",
+      "sending": "Envoi de votre demande de rendez-vous...",
+    "privacy_link": "Politique de confidentialité",
+    "owner_placeholder": "Entrez le nom du propriétaire",
+        "pet_placeholder": "Entrez le nom de l'animal",
+        "date_placeholder": "Sélectionnez la date",
+        "breed_placeholder": "Sélection",
+    
+
+    "symptoms": "Symptômes / Raison de la Visite",    
+    "phone": "Téléphone",
+    "symptoms_placeholder": "Symptômes / Raison de la visite",
+    "privacy": "J'accepte la politique de confidentialité",
+    "submit": "Confirmer le Rendez-vous",
+    "emergency": "Pour les urgences, veuillez appeler directement le"
+  }
+}
