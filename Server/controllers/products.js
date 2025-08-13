@@ -1,11 +1,13 @@
 const Product = require("../models/products");
 const {StatusCodes} = require("http-status-codes");
 const {NotFound} = require("../errors/indexErrors");
+const cloudinary = require("../utils/cloudinary");
 //get all products
 const getAllProducts = async(req , res)=>{
     const products = await Product.find().sort("name");
     res.status(StatusCodes.OK).json({products , count : products.length})
 }
+
 
 //get single product
 const getSingleProduct = async(req , res)=>{
@@ -57,20 +59,35 @@ const updateProduct = async(req , res)=>{
 }
 
 
-//delete product
-const deleteProduct = async(req , res)=>{
-    const {id : productID} = req.params;
+const deleteProduct = async (req, res) => {
+  const { id: productID } = req.params;
 
-        const product = await Product.findByIdAndDelete({_id : productID});
-        if(!product) throw new NotFound(`no product with the id : ${productID}`);
+  // Find the product first
+  const product = await Product.findById(productID);
+  if (!product) throw new NotFound(`No product with the id: ${productID}`);
 
-        res.status(StatusCodes.OK).send("product deleted successfully");
-}
+
+  if (product.image && product.image.length > 0) {
+    for (const img of product.image) {
+      try {
+        await cloudinary.uploader.destroy(img.publicId);
+      } catch (err) {
+        console.error(`Failed to delete image ${img.publicId}:`, err.message);
+      }
+    }
+  }
+
+  // Delete the product from DB
+  await Product.findByIdAndDelete(productID);
+  res.status(StatusCodes.OK).json({ msg: "Product deleted successfully" });
+};
+
+module.exports = { deleteProduct };
 
 module.exports = {
     getAllProducts,
     getSingleProduct,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
 }

@@ -17,6 +17,7 @@ import AdminProducts from "./pages/AdminProducts.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import AddProduct from "./pages/AddProduct.jsx";
 import Cart from "./pages/Cart.jsx";
+import EditProduct from "./pages/AdminEditProduct.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import { Route, Routes } from "react-router-dom";
 import CatHotel from "./pages/CatHotel";
@@ -47,6 +48,7 @@ function App() {
         <Route path="/dashboard/Appointments" element={<Appointments />} />
         <Route path="/dashboard/Reservations" element={<Reservations />} />
         <Route path="/dashboard/AdminProducts/add" element={<AddProduct />} />
+        <Route path="/dashboard/AdminProducts/edit/:id" element={<EditProduct />} />
       </Routes>
       <Footer />
     </>

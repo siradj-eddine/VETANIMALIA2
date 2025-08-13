@@ -8,7 +8,8 @@ const {
     getSingleProduct,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getLatestProducts
 } = require("../controllers/products");
 
 router.get("/" , getAllProducts)

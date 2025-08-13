@@ -9,7 +9,6 @@ export default function AdminProducts() {
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [addProduct, setAddProduct] = useState({ name: "", category: "", price: "", stock: "" });
 
   // Fetch Products
   const fetchProducts = async () => {
@@ -41,8 +40,12 @@ export default function AdminProducts() {
   // Delete Product
   const handleDeleteProduct = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/v1/products/${id}`);
-      setProducts(products.filter((p) => p.id !== id));
+      await axios.delete(`http://localhost:3000/api/v1/products/${id}` , {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+      setProducts(products.filter((p) => p._id !== id));
       toast.success("Product deleted successfully!");
     } catch (error) {
       toast.error("Error deleting product");
@@ -50,56 +53,68 @@ export default function AdminProducts() {
   };
 
   return (
-    <div className="bg-white min-h-full rounded-xl shadow-sm border border-gray-100 overflow-hidden ml-18 max-sm:ml-0">
+    <div className="flex min-h-full w-[90%] ml-[5%] bg-gray-50">
       <SideBar />
 
-      {/* Header + Add Form */}
-      <div className="p-4 md:p-6 border-b border-gray-200">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-          <h3 className="text-lg md:text-xl font-semibold">Products Management</h3>
-            <Link to={"/dashboard/AdminProducts/add"} className="bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded-md">
-              Add Product
-            </Link>
+      <main className="flex-1 p-4 md:p-6">
+        {/* Header + Add Product */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+          <h3 className="text-lg md:text-xl font-semibold mb-4 md:mb-0">
+            Products Management
+          </h3>
+          <Link
+            to={"/dashboard/AdminProducts/add"}
+            className="bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded-md"
+          >
+            Add Product
+          </Link>
         </div>
-      </div>
 
-      {/* Products Table */}
-      <div className="hidden md:block overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-4 py-3">Product</th>
-              <th className="px-4 py-3">Category</th>
-              <th className="px-4 py-3">Price</th>
-              <th className="px-4 py-3">Stock</th>
-              <th className="px-4 py-3">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {filteredProducts.map((p) => (
-              <tr key={p.id}>
-                <td className="px-4 py-4">{p.name}</td>
-                <td className="px-4 py-4">{p.category}</td>
-                <td className="px-4 py-4">${p.price}</td>
-                <td className="px-4 py-4">{p.stock}</td>
-                <td className="px-4 py-4 flex space-x-2">
-                  <button
-                    className="text-orange-400 hover:text-orange-600"
-                  >
+        {/* Search */}
+        <input
+          type="text"
+          placeholder="Search products..."
+          className="w-full mb-6 p-2 border border-gray-300 rounded-md"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
+        {/* Products Grid */}
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredProducts.map((p) => (
+            <li
+              key={p._id}
+              className="h-[500px] bg-white rounded-2xl shadow-md p-4 flex flex-col justify-between hover:shadow-lg transition-shadow"
+            >
+              <img src={p?.image[0].url} alt={p?.name} height={200} width={200}
+               className="object-cover h-2/3 w-full" />
+              <div className="flex-1 h-fit">
+                <h4 className="text-lg font-semibold mb-2">{p.name}</h4>
+                <p className="text-sm text-gray-500 mb-1">Category: {p.category}</p>
+                <p className="text-sm text-gray-500 mb-1">Price: ${p.price}</p>
+                <p className="text-sm text-gray-500">Stock: {p.stock}</p>
+              </div>
+              <div className="mt-4 flex space-x-2">
+                <button
+                  className="text-orange-400 hover:text-orange-600"
+                  aria-label={`Edit ${p.name}`}
+                >
+                  <Link to={`/dashboard/AdminProducts/edit/${p._id}`}>
                     <FaEdit />
-                  </button>
-                  <button
-                    className="text-red-400 hover:text-red-600"
-                    onClick={() => handleDeleteProduct(p.id)}
-                  >
-                    <FaTrash />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                  </Link>
+                </button>
+                <button
+                  className="text-red-400 hover:text-red-600"
+                  onClick={() => handleDeleteProduct(p._id)}
+                  aria-label={`Delete ${p.name}`}
+                >
+                  <FaTrash />
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </main>
     </div>
   );
 }

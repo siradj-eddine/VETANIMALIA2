@@ -11,6 +11,8 @@ const getAllOrders = async(req , res)=>{
     res.status(StatusCodes.OK).json({ orders, count: orders.length });
 }
 
+
+
 //get single order
 const getSingleOrder = async(req , res)=>{
     const {id : orderID} = req.params;
@@ -101,5 +103,5 @@ module.exports = {
     getSingleOrder,
     createOrder,
     updateOrder,
-    deleteOrder
+    deleteOrder,
 }

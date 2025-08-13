@@ -30,18 +30,19 @@ const SideBar = ({ className }) => {
              -translate-x-4 ${isOpen ? "translate-x-48" : ""} sm:mt-22 ml-1`}
           aria-label="Toggle menu"
         >
-          {isOpen ? <MdClose size={24} className='max-sm:w-3 max-sm:h-3'/> : <MdMenu size={24} className='max-sm:w-3 max-sm:h-3'/>}
+          {isOpen ? <MdClose size={24} className='max-sm:w-3 max-sm:h-3'/> : <MdMenu size={24} className='max-sm:w-3 max-sm:h-3 rotate-90 ml-2'/>}
         </button>
       )}
 
       <div
-        className={` absolute h-screen  z-40 w-64 bg-white shadow-xl transition-all duration-300 ease-in-out 
+        className={` fixed h-screen   z-40 w-64 bg-white shadow-xl transition-all duration-300 
+          ease-in-out top-25
           ${isMobile ? (isOpen ? 'left-0' : '-left-64') : 'left-0 md:w-17 md:hover:w-64'} 
           ${className}`}
       >
         <div className="ml-3 p-4 overflow-hidden  h-full">
           <h2 className="text-xl max-md:mt-15 font-bold mb-6 whitespace-nowrap md:ml-10 md:group-hover:opacity-100 transition-opacity duration-300">
-            Admin Panel
+            Paneau Admin
           </h2>
           <nav>
             <ul className="space-y-10 font-semibold">
@@ -53,7 +54,7 @@ const SideBar = ({ className }) => {
                 >
                   <MdDashboard size={24} className="flex-shrink-0" />
                   <span className="ml-4 whitespace-nowrap md:group-hover:opacity-100 transition-opacity duration-300">
-                    Dashboard
+                    Tableau de bord
                   </span>
                 </Link>
               </li>
@@ -65,7 +66,7 @@ const SideBar = ({ className }) => {
                 >
                   <GiClothes size={24} className="flex-shrink-0" />
                   <span className="ml-4 whitespace-nowrap  md:group-hover:opacity-100 transition-opacity duration-300">
-                    Products
+                    Produits
                   </span>
                 </Link>
               </li>
@@ -77,7 +78,7 @@ const SideBar = ({ className }) => {
                 >
                   <FaShoppingCart size={24} className="flex-shrink-0" />
                   <span className="ml-4 whitespace-nowrap  md:group-hover:opacity-100 transition-opacity duration-300">
-                    Orders
+                    Commandes
                   </span>
                 </Link>
               </li>
@@ -89,7 +90,7 @@ const SideBar = ({ className }) => {
                 >
                   <CiUser size={24} className="flex-shrink-0" />
                   <span className="ml-4 whitespace-nowrap md:group-hover:opacity-100 transition-opacity duration-300">
-                    Users
+                    Utilisateurs
                   </span>
                 </Link>
               </li>
@@ -101,7 +102,7 @@ const SideBar = ({ className }) => {
                 >
                   <FaClipboardList size={24} className="flex-shrink-0" />
                   <span className="ml-4 whitespace-nowrap md:group-hover:opacity-100 transition-opacity duration-300">
-                    Appointments
+                    Rendez-vous
                   </span>
                 </Link>
               </li>
@@ -113,7 +114,7 @@ const SideBar = ({ className }) => {
                 >
                   <RiReservedFill size={24} className="flex-shrink-0" />
                   <span className="ml-4 whitespace-nowrap md:group-hover:opacity-100 transition-opacity duration-300">
-                    Reservations
+                    Réservations
                   </span>
                 </Link>
               </li>

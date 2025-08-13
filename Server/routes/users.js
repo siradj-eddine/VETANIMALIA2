@@ -7,10 +7,11 @@ const {
     getSingleUser,
     updateUser,
     uploadAvatar,
-    deleteUser
+    deleteUser,
+    getLatestUsers
 } = require("../controllers/users");
 
 router.route("/").get(getAllUsers);
 router.route("/:id").get(getSingleUser).patch(updateUser).delete(deleteUser);
-router.post("/uploadAvatar" , singleUpload , uploadAvatar);    
+router.post("/uploadAvatar" , singleUpload , uploadAvatar);
 module.exports = router;

@@ -7,7 +7,8 @@ const {
     getSingleOrder,
     createOrder,
     updateOrder,
-    deleteOrder
+    deleteOrder,
+    getLatestOrders
 } = require("../controllers/orders");
 
 router.get("/" , authMiddleware , adminAuth, getAllOrders)

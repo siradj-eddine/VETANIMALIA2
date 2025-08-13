@@ -5,7 +5,7 @@ const Unauthenticated = require('../errors/Unauthenticated');
 
 // Get all appointments
 exports.getAllAppointments = async (req, res) => {
-    const appointments = await Appointment.find();
+    const appointments = await Appointment.find().populate('user', 'name');
     res.status(StatusCodes.OK).json(appointments);
 };
 
