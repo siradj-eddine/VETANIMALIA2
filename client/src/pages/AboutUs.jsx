@@ -1,9 +1,7 @@
-import React from "react";
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import doc from "../photo/imgs/docts.png";
 import velu from "../photo/imgs/velu.png";
-import Team from "../photo/imgs/team.png";
 
 const AboutUs = () => {
   const { t } = useTranslation();
@@ -29,7 +27,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      <section className="bg-[#F19A56] pt-10 px-8 rounded-3xl mb-3 text-center">
+      <section className="mainOrange pt-10 px-8 rounded-3xl mb-3 text-center">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
           <div className="w-full sm:w-1/2">
             <img

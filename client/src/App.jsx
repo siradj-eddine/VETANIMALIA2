@@ -15,16 +15,19 @@ import Appointments from "./pages/Appointments.jsx";
 import Reservations from "./pages/Reservations.jsx";
 import AdminProducts from "./pages/AdminProducts.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
+import AddProduct from "./pages/AddProduct.jsx";
 import Cart from "./pages/Cart.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import { Route, Routes } from "react-router-dom";
 import CatHotel from "./pages/CatHotel";
 import "./i18n/config";
+import {Toaster} from "sonner";
 
 function App() {
   return (
     <>
       <Navbar />
+        <Toaster position="top-center" richColors closeButton />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
@@ -43,6 +46,7 @@ function App() {
         <Route path="/dashboard/Users" element={<Users />} />
         <Route path="/dashboard/Appointments" element={<Appointments />} />
         <Route path="/dashboard/Reservations" element={<Reservations />} />
+        <Route path="/dashboard/AdminProducts/add" element={<AddProduct />} />
       </Routes>
       <Footer />
     </>

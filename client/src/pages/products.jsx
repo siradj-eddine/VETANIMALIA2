@@ -15,9 +15,7 @@ export default function Products() {
     // Fetch products from the API
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/v1/products");
-        console.log(response.data.products);
-        
+        const response = await axios.get("http://localhost:3000/api/v1/products");        
         setProducts(response.data.products);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -41,7 +39,7 @@ export default function Products() {
     <div className="max-w-full mx-auto px-6 py-10 flex justify-center flex-col items-center mt-[-100px]" >
       {/* Title & Image */}
       <div className="text-center mb-[-15px]  flex flex-row items-center  justify-center  w-[60%] gap-40 ">
-        <h2 className="text-5xl  tracking-wide text-shadow-sm text-shadow-gray-500    max-sm:hidden">Our Products</h2>
+        <h2 className="text-5xl  tracking-wide text-shadow-sm text-shadow-gray-500 max-sm:hidden">Our Products</h2>
         <img
           src={searchImage}
           alt="Pets"
@@ -51,7 +49,7 @@ export default function Products() {
 
       {/* Search Bar */}
       <div className="flex items-center justify-center w-full mb-8">
-        <div className="flex items-center bg-orange-400 rounded-full px-5 py-3 w-full max-w-2xl shadow-md">
+        <div className="flex items-center mainOrange rounded-full px-5 py-3 w-full max-w-2xl shadow-md">
           <FaSearch className="text-black text-lg mr-3" />
           <input
             type="text"
@@ -74,7 +72,7 @@ export default function Products() {
             onClick={() => setActiveCategory(cat)}
             className={`px-4 py-1 p-2 rounded-full ml-3 text-sm transition-colors ${
               activeCategory === cat
-                ? "bg-orange-400 text-white"
+                ? "mainOrange text-white"
                 : " text-black hover:bg-orange-100"
             }`}
           >
@@ -82,7 +80,7 @@ export default function Products() {
           </button>
         ))}
         {/* Arrow button */}
-        <button className="bg-orange-400 text-black px-3 text-center text-3xl py-1 rounded-full">
+        <button className="mainOrange text-black px-3 text-center text-3xl py-1 rounded-full">
           →
         </button>
       </div>
@@ -105,7 +103,7 @@ export default function Products() {
                 />
               </div>
               {/* Price & Name section */}
-              <div className="bg-orange-400 text-black p-4">
+              <div className="mainOrange text-black p-4">
                 <p className="font-bold text-lg">{product.price} DZD</p>
                 <p className="text-sm leading-snug">{product.name}</p>
               </div>

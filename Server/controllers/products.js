@@ -44,7 +44,7 @@ const createProduct = async(req , res)=>{
         res.status(StatusCodes.CREATED).json({product});
 }
 
-//updateOrder
+//update Product
 const updateProduct = async(req , res)=>{
     const {name , price , category , description , available} = req.body;
     const {id : productID} = req.params;

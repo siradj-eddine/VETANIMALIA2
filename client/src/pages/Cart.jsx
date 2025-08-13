@@ -1,163 +1,156 @@
-// src/pages/Cart.jsx
-import React, { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
-const GEL = (n) => new Intl.NumberFormat(undefined, { style: "currency", currency: "GEL" }).format(n || 0);
-
-const LS_KEY = "cart";
-
-const loadCart = () => {
-  try {
-    const raw = JSON.parse(localStorage.getItem(LS_KEY) || "[]");
-    if (Array.isArray(raw)) return raw;
-    if (raw && Array.isArray(raw.items)) return raw.items; // tolerant
-    return [];
-  } catch {
-    return [];
-  }
-};
-const saveCart = (items) => localStorage.setItem(LS_KEY, JSON.stringify(items));
+import { Link } from "react-router-dom";
+import { IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import DeleteIcon from "@mui/icons-material/Delete";
+import cat from "../photo/imgs/cat-removebg-preview (1) 2.png";
+import { useCart } from "../Context/cartContext";
 
 export default function Cart() {
-  const navigate = useNavigate();
-  const [items, setItems] = useState([]);
+  const { cart, setCart } = useCart();
 
-  useEffect(() => {
-    setItems(loadCart());
-  }, []);
-
-  const subtotal = useMemo(
-    () => items.reduce((sum, it) => sum + (it.price || 0) * (it.qty || 1), 0),
-    [items]
-  );
-  const total = subtotal; // keep it simple — no discounts here
-
-  const updateQty = (id, delta) => {
-    setItems((prev) => {
-      const next = prev
-        .map((it) => (it.id === id ? { ...it, qty: Math.max(1, (it.qty || 1) + delta) } : it))
-        .filter(Boolean);
-      saveCart(next);
-      return next;
-    });
+  const updateQty = (id) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item._id === id
+          ? { ...item, quantity: item.quantity + 1}
+          : item
+      )
+    );
   };
 
   const removeItem = (id) => {
-    setItems((prev) => {
-      const next = prev.filter((it) => it.id !== id);
-      saveCart(next);
-      return next;
-    });
+    setCart((prev) => prev.filter((item) => item._id !== id));
   };
 
-  const clearCart = () => {
-    setItems([]);
-    saveCart([]);
-  };
-
-  const goCheckout = () => navigate("/checkout");
+  const subtotal = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  const deliveryFee = cart.length > 0 ? 600 : 0;
+  const total = subtotal + deliveryFee;
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
-      <h1 className="mb-8 text-4xl font-semibold">Your Cart</h1>
+    <main
+      className="mx-auto max-w-6xl px-6 py-10"
+      style={{ fontFamily: "Kiwi Maru, serif" }}
+    >
+      <div className="flex flex-row justify-between items-center">
+        <h1 className="text-3xl font-semibold mb-8 text-gray-800">
+          Shopping Cart
+        </h1>
+        <img src={cat} alt="" className="w-[8%] max-lg:hidden" />
+      </div>
 
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_420px]">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px]">
         {/* LEFT: list of items */}
-        <section className="space-y-4">
-          {items.length ? (
-            items.map((it) => (
-              <article key={it.id} className="flex items-center gap-4 rounded-3xl border-2 border-orange-300 p-4">
-                <div className="grid h-20 w-20 place-items-center rounded bg-zinc-100">
-                  {it.image ? (
-                    <img src={it.image} alt={it.name} className="h-16 w-auto object-contain" />
-                  ) : (
-                    <div className="h-16 w-16 rounded bg-zinc-200" />
-                  )}
-                </div>
+        <section>
+          {cart.length ? (
+            <div className="overflow-x-auto">
+              <header className="grid grid-cols-4 border-b-4 border-gray-600 pb-3 font-semibold text-center">
+                <div>Name</div>
+                <div>Quantity</div>
+                <div>Price</div>
+                <div className="text-right">Remove</div>
+              </header>
 
-                <div className="flex-1 min-w-0">
-                  <h3 className="truncate text-lg font-semibold">{it.name}</h3>
-                  <p className="text-sm text-zinc-500">{GEL(it.price)} each</p>
-                  <div className="mt-3 inline-flex items-center gap-2">
-                    <button
-                      type="button"
-                      aria-label={`Decrease ${it.name}`}
-                      className="rounded border px-3 py-1"
-                      onClick={() => updateQty(it.id, -1)}
-                    >
-                      −
-                    </button>
-                    <span className="w-8 text-center">{it.qty || 1}</span>
-                    <button
-                      type="button"
-                      aria-label={`Increase ${it.name}`}
-                      className="rounded border px-3 py-1"
-                      onClick={() => updateQty(it.id, +1)}
-                    >
-                      +
-                    </button>
-                    <button
-                      type="button"
-                      className="ml-4 text-sm underline opacity-80 hover:opacity-100"
-                      onClick={() => removeItem(it.id)}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </div>
+              <div>
+                {cart.map((it) => (
+                  <article
+                    key={`${it._id}`}
+                    className="grid grid-cols-4 border-gray-400 items-center"
+                  >
+                    <div className="flex items-center py-4 ">
+                      {it.image && (
+                        <img
+                          src={it.image[0].url}
+                          alt={it.name}
+                          className="w-12 h-12 object-contain mr-8"
+                        />
+                      )}
+                      <span className="font-medium text-gray-800">
+                        {it.name}
+                      </span>
+                    </div>
 
-                <div className="text-right">
-                  <div className="text-sm text-zinc-500">Line total</div>
-                  <div className="text-lg font-semibold">{GEL((it.price || 0) * (it.qty || 1))}</div>
-                </div>
-              </article>
-            ))
-          ) : (
-            <div className="rounded-3xl border-2 border-dashed border-orange-300 p-8 text-center">
-              <p className="mb-2">Your cart is empty.</p>
-              <Link to="/" className="underline">Continue shopping</Link>
+                    <div className="flex justify-center py-4">
+                      <IconButton onClick={() => updateQty(it.id, -1)}>
+                        <RemoveIcon />
+                      </IconButton>
+                      <span className="mx-2 border-2 px-8 border-orange-400 rounded-full">
+                        {it.quantity}
+                      </span>
+                      <IconButton onClick={() => updateQty(it._id)}>
+                        <AddIcon />
+                      </IconButton>
+                    </div>
+
+                    <div className="text-right py-4 font-medium text-gray-700">
+                      {it.price * it.quantity} DZD
+                    </div>
+
+                    <div className="flex justify-center">
+                      <IconButton onClick={() => removeItem(it._id)}>
+                        <DeleteIcon className="text-red-500 hover:text-red-700" />
+                      </IconButton>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
-          )}
-
-          {items.length > 0 && (
-            <div className="pt-2">
-              <button type="button" onClick={clearCart} className="text-sm underline opacity-80 hover:opacity-100">
-                Clear cart
-              </button>
+          ) : (
+            <div className="rounded-lg border-2 border-dashed border-gray-300 p-8 text-center">
+              <p className="mb-2 text-gray-600">Your cart is empty.</p>
+              <Link to="/" className="text-orange-500 hover:underline">
+                Continue shopping
+              </Link>
             </div>
           )}
         </section>
 
         {/* RIGHT: summary */}
-        <aside className="rounded-3xl border-2 border-orange-300 p-6 lg:sticky lg:top-24">
-          <h3 className="mb-6 text-3xl font-semibold text-center drop-shadow-sm">Summary</h3>
+        <aside className="bg-gray-50 border-2 border-orange-400 rounded-3xl p-6 lg:sticky lg:top-24 shadow-md">
+          <h3 className="text-xl font-semibold mb-4 flex justify-center text-gray-800">
+            Summary
+          </h3>
+          <hr className="my-3" />
 
-          <ul className="space-y-3 text-sm">
-            <li className="flex items-center justify-between">
-              <span>Subtotal</span>
-              <span className="font-medium">{GEL(subtotal)}</span>
-            </li>
-          </ul>
+          <div className="space-y-3 mb-4">
+            <div className="flex justify-between">
+              <span>Order total</span>
+              <span className="font-medium">{subtotal} DZD</span>
+            </div>
 
-          <hr className="my-4 border-zinc-300" />
+            <div className="flex justify-between">
+              <span>Delivery Service</span>
+              <span className="font-medium">+{deliveryFee} DZD</span>
+            </div>
+          </div>
 
-          <div className="mb-2 flex items-center justify-between">
-            <span className="text-xl font-semibold">Total</span>
-            <span className="text-3xl font-semibold">{GEL(total)}</span>
+          <div className="border-t border-gray-200 pt-4 mb-6">
+            <div className="flex justify-between">
+              <span className="font-semibold">Total</span>
+              <span className="font-semibold text-lg text-gray-800">
+                {total} DZD
+              </span>
+            </div>
           </div>
 
           <button
-            onClick={goCheckout}
-            disabled={!items.length}
-            className={`mt-4 w-full rounded-md bg-orange-400 px-4 py-3 text-lg font-semibold text-black hover:opacity-90 ${
-              !items.length ? "opacity-50 cursor-not-allowed" : ""
+            disabled={!cart.length}
+            className={`w-full py-3 px-4 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-all ${
+              !cart.length ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
-            Proceed to checkout
+            <Link to="/checkout">
+              Checkout ({cart.length} item{cart.length !== 1 ? "s" : ""})
+            </Link>
           </button>
 
           <div className="mt-4 text-center text-sm">
-            <Link to="/" className="underline">Continue shopping</Link>
+            <Link to="/products" className="text-orange-500 hover:underline">
+              Continue shopping
+            </Link>
           </div>
         </aside>
       </div>

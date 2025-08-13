@@ -24,17 +24,52 @@ const getSingleOrder = async(req , res)=>{
 }
 
 //create order
-const createOrder = async(req , res)=>{
-    const {products , status , name , willaya ,adress , phoneNb , email , additional_Info} = req.body;
-    
-    if(!products || products.length === 0) throw new BadRequest("Please Provide products");
-    const productsIds = products.map(p=>p.product);    
-    const foundProducts = await Product.find({_id : {$in : productsIds}});
-    if(foundProducts.length !== products.length) throw new BadRequest("one or more wrong products (doesnt exist)");
+const createOrder = async (req, res) => {
+  const { products, status, name, willaya, adress, phoneNb, email, additional_Info , totalAmount } = req.body;
 
-    const order = await Order.create({products , status, name , willaya , adress , phoneNb , email , additional_Info});
-    res.status(StatusCodes.CREATED).json({ order });
-}
+  if (!products || products.length === 0) {
+    throw new BadRequest("Please provide products");
+  }
+
+  const productIds = products.map((p) => p.product);
+  const foundProducts = await Product.find({ _id: { $in: productIds } });
+
+  if (foundProducts.length !== products.length) {
+    throw new BadRequest("One or more products do not exist");
+  }
+
+  let order;
+
+  if (req.user) {
+    order = await Order.create({
+      products,
+      status,
+      name,
+      willaya,
+      adress,
+      phoneNb,
+      email,
+      additional_Info,
+      totalAmount,
+      user: req.user._id
+    });
+  } else {
+    order = await Order.create({
+      products,
+      status,
+      name,
+      willaya,
+      adress,
+      phoneNb,
+      email,
+      additional_Info,
+      totalAmount
+    });
+  }
+
+  res.status(StatusCodes.CREATED).json({ order });
+};
+
 
   //update order 
     const updateOrder = async(req , res)=>{

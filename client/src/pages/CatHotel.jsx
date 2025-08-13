@@ -229,7 +229,7 @@ export default function CatHotel() {
             </button>
             <button
               type="submit"
-              className="px-5 py-2 rounded-full bg-orange-400 text-black hover:opacity-90 font-semibold"
+              className="px-5 py-2 rounded-full bg-[var(--mainOrange)] text-black hover:opacity-90 font-semibold"
             >
               Submit booking
             </button>

@@ -89,7 +89,7 @@ const HomePage = () => {
       title: t('services.5.title'),
       description: t('services.5.description'),
       buttonText: t('services.5.buttonText'),
-      color: "bg-[#F19A56]",
+      color: "bg-[var(--mainOrange)]",
       btn: "bg-black text-white",
     },
   ];
@@ -141,7 +141,7 @@ const HomePage = () => {
         <div className={`text-center sm:text-left w-full sm:w-1/2 space-y-4 ${isRTL ? 'text-right' : 'text-left'}`}>
           <h1 id="hero-heading" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
             {t('hero.title1')} <br />
-            <span className="text-[#F19A56]">{t('hero.title2')}</span>
+            <span className="text-[var(--mainOrange)]">{t('hero.title2')}</span>
           </h1>
 
           <div className="space-y-4 text-sm sm:text-base md:text-lg">
@@ -170,7 +170,8 @@ const HomePage = () => {
 
       {/* About Section */}
       <section 
-        className="px-4 py-8 sm:py-12 mb-4 bg-[#F19A56] text-center flex flex-col rounded-3xl mx-2 sm:mx-8 md:mx-16 transition-all duration-300"
+        className="px-4 py-8 sm:py-12 mb-4 bg-[var(--mainOrange)] text-center flex flex-col
+         rounded-3xl mx-2 sm:mx-8 md:mx-16 transition-all duration-300 max-sm:mt-10"
         aria-labelledby="about-heading"
       >
         <div className="flex justify-between items-center w-full mb-6 sm:mb-8">

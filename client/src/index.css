@@ -2,15 +2,12 @@
 @tailwind utilities;
 body {
     background: linear-gradient(to bottom, #FAFAFA, #F5F5F5);
-
 }
 
 :root{
     --mainOrange: #F19A56;
-   
 }
 
 @utility mainOrange{
     background-color: var(--mainOrange);
-
 }
