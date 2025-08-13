@@ -96,7 +96,20 @@
     "products": "Produits",
     "contact": "Contact",
     "login": "Se connecter",
-    "appointment": "Rendez-vous"
+    "appointment": "Rendez-vous",
+    "signup": "S'inscrire",
+    "dashboard": "Tableau de bord",
+    "catHotel": "Hôtel pour chats"
+  },
+  "sidebar": {
+    "toggle_menu": "Afficher / masquer le menu",
+    "title": "Panneau d'administration",
+    "dashboard": "Tableau de bord",
+    "products": "Produits",
+    "orders": "Commandes",
+    "users": "Utilisateurs",
+    "appointments": "Rendez-vous",
+    "reservations": "Réservations"
   },
   "footer": {
     "mailbox": "MailBox",
@@ -156,6 +169,28 @@
     "send": "Envoyer le message",
     "doctor_title":"Vétérinaire principal"
   },
+
+  "dashboard": {
+    "totalSales": "Ventes totales",
+    "products": "Produits",
+    "orders": "Commandes",
+    "customers": "Clients",
+    "recentOrders": "Commandes récentes"
+  },
+  "table": {
+    "orderId": "ID de commande",
+    "customer": "Client",
+    "product": "Produit",
+    "total": "Total",
+    "status": "Statut",
+    "order": "Commande"
+  },
+  "status": {
+    "completed": "Terminé",
+    "pending": "En attente",
+    "cancelled": "Annulé"
+  },
+
   "login": {
     "title": "Connexion",
     "subtitle": "Accédez à votre espace personnel VETANIMALIA",
@@ -169,6 +204,29 @@
     "or": "ou"
     
   },
+  "signup": {
+    "title": "Créer votre compte",
+    "subtitle": "Rejoignez-nous dès aujourd'hui et profitez de toutes les fonctionnalités.",
+    "create_account": "S'inscrire",
+    "or": "ou",
+    "name": "Nom complet",
+    "name_placeholder": "Jean Dupont",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "confirm_password": "Confirmez le mot de passe",
+    "password_mismatch": "Les mots de passe ne correspondent pas",
+    "signup": "S'inscrire",
+    "loading": "Création du compte...",
+    "success": "Compte créé avec succès ! Veuillez vous connecter.",
+    "failed": "Échec de l'inscription. Veuillez réessayer.",
+    "have_account": "Vous avez déjà un compte ?",
+    "login": "Se connecter",
+    "image_alt": "Illustration pour la création de compte",
+    "welcome": "Bienvenue chez VETANIMALIA",
+    "register": "Inscription",
+    "phone": "Numéro de téléphone"
+  },
+
   "Services": {
     "title": "Nos Services",
     "subtitle": "Des soins complets et attentionnés pour vos compagnons à quatre pattes",

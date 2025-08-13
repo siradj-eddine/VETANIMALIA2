@@ -21,6 +21,7 @@ import EditProduct from "./pages/AdminEditProduct.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import { Route, Routes } from "react-router-dom";
 import CatHotel from "./pages/CatHotel";
+import SignUp from "./pages/SignUp.jsx";
 import "./i18n/config";
 import {Toaster} from "sonner";
 
@@ -49,6 +50,7 @@ function App() {
         <Route path="/dashboard/Reservations" element={<Reservations />} />
         <Route path="/dashboard/AdminProducts/add" element={<AddProduct />} />
         <Route path="/dashboard/AdminProducts/edit/:id" element={<EditProduct />} />
+        <Route path="/signUp" element={<SignUp />} />
       </Routes>
       <Footer />
     </>

@@ -1,12 +1,44 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
 import logo from "../photo/imgs/logo.png";
 
+const CART_KEY = "cart";
+
+function useCartCount() {
+  const [count, setCount] = useState(0);
+
+  const readCount = () => {
+    try {
+      const raw = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+      const items = Array.isArray(raw) ? raw : Array.isArray(raw?.items) ? raw.items : [];
+      const c = items.reduce((s, it) => s + (it?.qty || 1), 0);
+      setCount(c);
+    } catch {
+      setCount(0);
+    }
+  };
+
+  useEffect(() => {
+    readCount();
+    const onStorage = (e) => e.key === CART_KEY && readCount();
+    const onCustom = () => readCount();
+
+    window.addEventListener("storage", onStorage);
+    window.addEventListener("cart:updated", onCustom);
+    return () => {
+      window.removeEventListener("storage", onStorage);
+      window.removeEventListener("cart:updated", onCustom);
+    };
+  }, []);
+
+  return count;
+}
 
 const Navbar = () => {
   const { t } = useTranslation();
+  const cartCount = useCartCount();
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef(null);
   const buttonRef = useRef(null);
@@ -32,7 +64,7 @@ const Navbar = () => {
     <nav
       ref={navRef}
       className="flex justify-between items-center p-3 sm:p-4 lg:p-5 shadow-lg font-sans 
-bg-white rounded-full  relative z-50"
+                   bg-white rounded-full  relative"
     >
       {/* Logo */}
       <Link to="/" className="flex items-center z-10">
@@ -41,7 +73,7 @@ bg-white rounded-full  relative z-50"
 
       {/* Desktop Navigation (hidden below lg) */}
       <ul className="hidden lg:flex space-x-4 lg:space-x-8 text-center">
-        <li>
+        <li >
           <Link to="/About" className="hover:text-orange-600 transition-colors duration-200 py-2 px-1 text-sm lg:text-base">
             {t("navbar.about")}
           </Link>
@@ -61,19 +93,22 @@ bg-white rounded-full  relative z-50"
             {t("navbar.contact")}
           </Link>
         </li>
-        <li>
-          <Link to="/dashboard" className="hover:text-orange-600 transition-colors duration-200 py-2 px-1 text-sm lg:text-base">
-            {t("navbar dashboard")}
-          </Link>
-        </li>
-        <li>
+
+               <li>
           <Link
             to="/cat-hotel"
             className="hover:text-orange-600 w-3xl text-sm  lg:text-base "
           >
-            {t("navbar.catHotel", { defaultValue: "Cat Hotel" })}
+            {t("navbar.catHotel")}
           </Link>
         </li>
+
+        <li>
+          <Link to="/dashboard" className="hover:text-orange-600 transition-colors duration-200 py-2 px-1 text-sm lg:text-base">
+            {t("navbar.dashboard")}
+          </Link>
+        </li>
+ 
       </ul>
 
       {/* Desktop Buttons (hidden below lg) */}
@@ -91,13 +126,18 @@ bg-white rounded-full  relative z-50"
             <path strokeLinecap="round" strokeLinejoin="round"
               d="M3 3h2l.4 2M7 13h10l3-7H6.4M7 13l-2-8H3M7 13l-1.5 6h12.9M9 21a1 1 0 110-2 1 1 0 010 2zm8 1a1 1 0 100-2 1 1 0 000 2z" />
           </svg>
+          {cartCount > 0 && (
+            <span className="absolute -top-1 -right-1 rounded-full bg-orange-400 text-black text-xs px-1.5 py-0.5 leading-none">
+              {cartCount}
+            </span>
+          )}
         </Link>
 
         <Link to="/login" className="px-3 lg:px-5 py-1 text-center bg-[#FFBD89] text-white hover:bg-orange-400 rounded-full transition duration-300 text-sm lg:text-base">
           {t("navbar.login")}
         </Link>
-        <Link to="/RendezVous" className="px-3 lg:px-5 py-1 text-center bg-[#FFBD89] text-white hover:bg-orange-400 rounded-full transition duration-300 text-sm lg:text-base">
-          {t("navbar.appointment")}
+        <Link to="/signUp" className="px-3 lg:px-5 py-1 text-center bg-[#FFBD89] text-white hover:bg-orange-400 rounded-full transition duration-300 text-sm lg:text-base">
+          {t("navbar.signup")}
         </Link>
       </div>
 
@@ -116,6 +156,11 @@ bg-white rounded-full  relative z-50"
             <path strokeLinecap="round" strokeLinejoin="round"
               d="M3 3h2l.4 2M7 13h10l3-7H6.4M7 13l-2-8H3M7 13l-1.5 6h12.9M9 21a1 1 0 110-2 1 1 0 010 2zm8 1a1 1 0 100-2 1 1 0 000 2z" />
           </svg>
+          {cartCount > 0 && (
+            <span className="absolute -top-1 -right-1 rounded-full bg-orange-400 text-black text-[10px] px-1 py-0.5 leading-none">
+              {cartCount}
+            </span>
+          )}
         </Link>
 
         {/* Hamburger */}

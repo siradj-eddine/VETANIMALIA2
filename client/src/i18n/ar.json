@@ -89,7 +89,20 @@
     "products": "المنتجات",
     "contact": "اتصل بنا",
     "login": "تسجيل الدخول",
-    "appointment": "موعد"
+    "appointment": "موعد",
+    "signup": "إنشاء حساب",
+    "dashboard": "لوحة التحكم",
+    "catHotel": "فندق القطط"
+  },
+    "sidebar": {
+    "toggle_menu": "إظهار / إخفاء القائمة",
+    "title": "لوحة التحكم",
+    "dashboard": " لوحة القيادة  " ,
+    "products": "المنتجات",
+    "orders": "الطلبات",
+    "users": "المستخدمون",
+    "appointments": "المواعيد",
+    "reservations": "الحجوزات"
   },
   "footer": {
     "mailbox": "البريد الإلكتروني",
@@ -149,6 +162,26 @@
     "send": "إرسال الرسالة",
     "doctor_title": "الطبيب البيطري الرئيسي"
   },
+  "dashboard": {
+    "totalSales": "إجمالي المبيعات",
+    "products": "المنتجات",
+    "orders": "الطلبات",
+    "customers": "العملاء",
+    "recentOrders": "الطلبات الأخيرة"
+  },
+  "table": {
+    "orderId": "رقم الطلب",
+    "customer": "العميل",
+    "product": "المنتج",
+    "total": "الإجمالي",
+    "status": "الحالة",
+    "order": "طلب"
+  },
+  "status": {
+    "completed": "مكتمل",
+    "pending": "قيد الانتظار",
+    "cancelled": "ملغي"
+  },
   "login": {
     "title": "تسجيل الدخول",
     "subtitle": "ادخل إلى حسابك الشخصي في VETANIMALIA",
@@ -159,6 +192,28 @@
     "login": "تسجيل الدخول",
     "no_account": "لا تملك حسابًا؟",
     "signup": "إنشاء حساب"
+  },
+    "signup": {
+    "title": "إنشاء حساب جديد",
+    "subtitle": "انضم إلينا اليوم وتمتع بجميع المزايا.",
+    "create_account": "إنشاء حساب",
+    "or": "أو",
+    "name": "الاسم الكامل",
+    "name_placeholder": "محمد أحمد",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirm_password": "تأكيد كلمة المرور",
+    "password_mismatch": "كلمتا المرور غير متطابقتين",
+    "signup": "إنشاء حساب",
+    "loading": "جارٍ إنشاء الحساب...",
+    "success": "تم إنشاء الحساب بنجاح! يرجى تسجيل الدخول.",
+    "failed": "فشل إنشاء الحساب. يرجى المحاولة مرة أخرى.",
+    "have_account": "هل لديك حساب بالفعل؟",
+    "login": "تسجيل الدخول",
+    "image_alt": "صورة توضيحية لإنشاء الحساب",
+    "welcome":"مرحبًا بكم في VETANIMALIA",
+    "register": "سجل الآن",
+    "phone": "رقم الهاتف"
   },
   "Services": {
     "title": "خدماتنا",
