@@ -6,6 +6,10 @@ const appointmentSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    name : {
+        type: String,
+        required: [true, 'Client name is required']
+    },
     kind: {
         type: String,
         required: [true , 'Pet kind is required']

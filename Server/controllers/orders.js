@@ -27,7 +27,7 @@ const getSingleOrder = async(req , res)=>{
 
 //create order
 const createOrder = async (req, res) => {
-  const { products, status, name, willaya, adress, phoneNb, email, additional_Info , totalAmount } = req.body;
+  const { products, status, name, willaya, adress, phoneNb, email, additional_Info , totalAmount , deliveryMethod } = req.body;
 
   if (!products || products.length === 0) {
     throw new BadRequest("Please provide products");
@@ -46,6 +46,7 @@ const createOrder = async (req, res) => {
     order = await Order.create({
       products,
       status,
+      deliveryMethod,
       name,
       willaya,
       adress,
@@ -58,6 +59,7 @@ const createOrder = async (req, res) => {
   } else {
     order = await Order.create({
       products,
+      deliveryMethod,
       status,
       name,
       willaya,

@@ -26,6 +26,7 @@ const productsRouter = require("./routes/products");
 const ordersRouter = require("./routes/orders");
 const appointmentsRouter = require("./routes/appointments");
 const dashboardRouter = require("./routes/Latest");
+const reservationRouter = require("./routes/reservations");
 
 
 //error handler middleware
@@ -52,11 +53,12 @@ app.use(rateLimit({
 
 //routes
 app.use("/api/v1/auth" ,authRouter);
-app.use("/api/v1/users" ,authMiddleware , adminAuth ,usersRouter);
+app.use("/api/v1/users" ,authMiddleware ,usersRouter);
 app.use("/api/v1/products" , productsRouter);
 app.use("/api/v1/orders" ,ordersRouter);
 app.use("/api/v1/appointments", authMiddleware, appointmentsRouter);
 app.use("/api/v1/dashboard", authMiddleware, adminAuth, dashboardRouter);
+app.use("/api/v1/reservations",reservationRouter);
 
 //error handler middleware
 app.use(errorHandlerMiddleware);

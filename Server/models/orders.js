@@ -7,6 +7,11 @@ const orderSchema = new mongoose.Schema({
         ref : "User",
     },
 
+    name : {
+        type : String,
+        required : true,
+    },
+
     totalAmount : {
         type : Number,
         required : true
@@ -56,6 +61,11 @@ const orderSchema = new mongoose.Schema({
 
     additional_Info:{
         type : String,
+    },
+    deliveryMethod : {
+        type : String,
+        enum : ["a domicile", "au bureau"],
+        default : "a domicile"
     }
 
 } , {timestamps : true});

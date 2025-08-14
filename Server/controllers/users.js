@@ -18,6 +18,13 @@ const getSingleUser = async(req , res)=>{
     res.status(StatusCodes.OK).json({user})
 }
 
+
+const getCurrentUser = async(req , res)=>{
+    const user = await User.findById(req.user.userID);
+    if(!user) throw new NotFound(`no user with the id : ${req.user.userID}`);
+    res.status(StatusCodes.OK).json({user});
+}
+
 //update user
 const updateUser = async(req , res)=>{
     const {name , phone} = req.body;
@@ -63,6 +70,7 @@ const deleteUser = async(req , res)=>{
 module.exports = {
     getAllUsers,
     getSingleUser,
+    getCurrentUser,
     updateUser,
     uploadAvatar,
     deleteUser,
