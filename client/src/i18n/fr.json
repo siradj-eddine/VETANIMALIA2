@@ -99,7 +99,9 @@
     "appointment": "Rendez-vous",
     "signup": "S'inscrire",
     "dashboard": "Tableau de bord",
-    "catHotel": "Hôtel pour chats"
+    "catHotel": "Hôtel pour chats",
+    "logout": "Se déconnecter",
+    "logout_success": "Déconnexion réussie"
   },
   "sidebar": {
     "toggle_menu": "Afficher / masquer le menu",
@@ -299,5 +301,9 @@
     "privacy": "J'accepte la politique de confidentialité",
     "submit": "Confirmer le Rendez-vous",
     "emergency": "Pour les urgences, veuillez appeler directement le"
+  },
+  "productDetails" : {
+    "error" : "sil vous plaît ajoutez des produits au panier avant de procéder au paiement.",
+    "addedToCart": "Produit ajouté au panier."
   }
 }

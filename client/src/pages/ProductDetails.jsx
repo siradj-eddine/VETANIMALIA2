@@ -6,11 +6,11 @@ import { useCart } from "../Context/cartContext";
 import { CiShoppingCart } from "react-icons/ci";
 import catImage from "../photo/imgs/cat-removebg-preview (1) 2.png" ;
 import { toast } from "sonner";
-
+import {useTranslation} from "react-i18next";
 export default function ProductDetails() {
+  const {t} = useTranslation();
   const { id } = useParams();
-  const { addToCart } = useCart(); 
-
+  const { addToCart , cart} = useCart(); 
   const [currentImgIdx, setCurrentImgIdx] = useState(0);
   const [gallery, setGallery] = useState([]);
   const [product, setProduct] = useState({
@@ -23,7 +23,6 @@ export default function ProductDetails() {
   });
 
   let [quantity, setQuantity] = useState(1);
-  let [size, setSize] = useState("");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -43,12 +42,13 @@ export default function ProductDetails() {
 
   function handleAddToCart() {
     if (quantity > 0) {
-      addToCart(product, quantity, size);
-      toast.success("Product added to cart!");
+      addToCart(product, quantity);
+      toast.success(t("productDetails.addedToCart"));
     } else {
-      toast.error("Please enter a valid quantity.");
+      toast.error(t("productDetails.error"));
     }
   }
+  
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 overflow-x-hidden">
@@ -133,17 +133,20 @@ export default function ProductDetails() {
                 <CiShoppingCart size={22}/> Ajouter au Panier
               </button>
 
-              <button className="mt-3 w-full rounded-md border-2 border-orange-300 px-4 py-2 font-semibold hover:bg-orange-50">
-                <Link to={"/checkout"}>Acheter Maintenant</Link>
-              </button>
+                <button onClick={() => {
+                  if(cart.length > 0) {
+                   return
+                  }else {
+                    handleAddToCart();
+                  }
+                }} className="mt-3 w-full rounded-md border-2 border-orange-300 px-4 py-2 font-semibold hover:bg-orange-50">
+                  <Link to="/checkout">Procéder au Paiement</Link>
+                  </button>
             </div>
           </div>
         </div>
       </div>
         <hr className="w-[80%] ml-[10%] my-10"/>
-        <section>
-          <h1 className="font-semibold text-3xl max-sm:text-center">Autre Produits</h1>
-        </section>
     </main>
   );
 }

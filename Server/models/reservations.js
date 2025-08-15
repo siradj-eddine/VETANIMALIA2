@@ -14,7 +14,7 @@ const ReservationSchema = new mongoose.Schema({
   },
 
   catInfo: {
-    catName: { type: String, required: true },
+    catName: { type: String },
     breed: { type: String, required: true },
     age: { type: Number, required: true },
     numberOfCats: { type: Number, required: true },
@@ -22,15 +22,17 @@ const ReservationSchema = new mongoose.Schema({
     sterilized: { type: Boolean, required: true },
     vaccinationNotebook: { type: String, enum: ["Updated", "Not updated"], required: true },
     antiParasiteTreatment: { type: Boolean, required: true },
-    lastTreatmentDate: { type: Date }
+    lastTreatmentDate: { type: Date , required : true }
   },
 
   healthProblems: {
     type : String,
+    required : true
   },
 
   usualFood: {
-    type: String 
+    type: String,
+    required: true
   },
 
   specialNotes: { type: String },

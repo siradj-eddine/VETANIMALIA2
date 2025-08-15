@@ -4,10 +4,12 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'sonner';
 import RegisterImage from '../photo/imgs/register2.jpg';
+import { useUser } from "../context/UserContext.jsx";
 
 const LoginPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+const { setUser } = useUser();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,8 +25,11 @@ const LoginPage = () => {
 
       // Save token in localStorage
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('user', JSON.stringify(res.data.user));
+      
       toast.success(t('login.success'));
       navigate('/');
+      setUser(res.data.user);
     } catch (err) {
       toast.error(err.response?.data?.message || t('login.failed'));
     } finally {

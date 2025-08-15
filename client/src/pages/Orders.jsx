@@ -14,6 +14,8 @@ export default function Orders() {
     Cancelled: "bg-red-100 text-red-800",
   };
 
+  console.log(orders);
+
   // Fetch orders from backend
   const fetchOrders = async () => {
     try {
@@ -65,14 +67,16 @@ export default function Orders() {
       </div>
 
       {/* Desktop Table */}
-      <div className="hidden md:block overflow-x-auto">
+      <div className="hidden lg:block overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Commande ID</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Produits</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telephone</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">methode</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
@@ -81,11 +85,13 @@ export default function Orders() {
             {orders.map((order) => (
               <tr key={order._id} className="hover:bg-gray-50">
                 <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#{order._id}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{order.customer?.name || "Guest"}</td>
+                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{order?.name || "Guest"}</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                   {order.products?.map((p) => `${p.product?.name} x ${p.quantity}`).join(", ")}
                 </td>
+                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{`${order?.phoneNb}`}</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{order?.totalAmount?.toFixed(2)} DZD</td>
+                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{order?.deliveryMethod}</td>
                 <td className="px-4 py-4 whitespace-nowrap">
                   <span className={`px-2 py-1 text-xs font-medium rounded-full ${statusColors[order.status]}`}>
                     {order.status}
@@ -106,7 +112,7 @@ export default function Orders() {
       </div>
 
       {/* Mobile Card View */}
-      <div className="md:hidden p-4 space-y-4">
+      <div className="lg:hidden p-4 space-y-4">
         {orders.map((order) => (
           <div key={order._id} className="bg-gray-50 rounded-lg shadow p-4">
             <p className="font-bold text-lg">Order #{order._id}</p>

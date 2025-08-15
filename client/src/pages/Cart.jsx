@@ -9,13 +9,27 @@ import { useCart } from "../Context/cartContext";
 export default function Cart() {
   const { cart, setCart } = useCart();
 
-  const updateQty = (id) => {
+  const incrementQty = (id) => {
     setCart((prev) =>
       prev.map((item) =>
         item._id === id
           ? { ...item, quantity: item.quantity + 1}
           : item
       )
+    );
+  };
+
+  const decrementQty = (id) => {
+    setCart((prev) =>
+      prev.map((item) =>{
+        if(item.quantity > 1) {
+          return item._id === id
+          ? { ...item, quantity: item.quantity - 1}
+          : item
+        }else{
+          return item;
+        }
+      })
     );
   };
 
@@ -74,13 +88,13 @@ export default function Cart() {
                     </div>
 
                     <div className="flex justify-center py-4">
-                      <IconButton onClick={() => updateQty(it.id, -1)}>
+                      <IconButton onClick={() => decrementQty(it._id)}>
                         <RemoveIcon />
                       </IconButton>
                       <span className="mx-2 border-2 px-8 border-orange-400 rounded-full">
                         {it.quantity}
                       </span>
-                      <IconButton onClick={() => updateQty(it._id)}>
+                      <IconButton onClick={() => incrementQty(it._id)}>
                         <AddIcon />
                       </IconButton>
                     </div>
@@ -101,7 +115,7 @@ export default function Cart() {
           ) : (
             <div className="rounded-lg border-2 border-dashed border-gray-300 p-8 text-center">
               <p className="mb-2 text-gray-600">Your cart is empty.</p>
-              <Link to="/" className="text-orange-500 hover:underline">
+              <Link to="/products" className="text-orange-500 hover:underline">
                 Continue shopping
               </Link>
             </div>

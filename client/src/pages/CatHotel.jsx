@@ -1,241 +1,426 @@
-// src/pages/CatHotel.jsx
-import React, { useEffect, useMemo, useState } from "react";
-import { FaCalendarAlt, FaUser, FaCat } from "react-icons/fa";
+import React, { useState } from "react";
 
-const LS_DRAFT = "catHotel:formDraft";
-const NIGHTLY_DEFAULT = 30;
-
-function calcNights(inDate, outDate) {
-  if (!inDate || !outDate) return 0;
-  const a = new Date(inDate);
-  const b = new Date(outDate);
-  const ms = b - a;
-  return Math.max(0, Math.ceil(ms / (1000 * 60 * 60 * 24)));
-}
-
-export default function CatHotel() {
-  const [form, setForm] = useState(() => {
-    try {
-      return (
-        JSON.parse(localStorage.getItem(LS_DRAFT) || "null") || {
-          ownerName: "",
-          phone: "",
-          email: "",
-          catName: "",
-          breed: "",
-          sex: "",
-          age: "",
-          vaccinated: false,
-          checkIn: "",
-          checkOut: "",
-          dropOffTime: "",
-          pickUpTime: "",
-          pricePerNight: NIGHTLY_DEFAULT,
-          notes: "",
-        }
-      );
-    } catch {
-      return {
-        ownerName: "",
-        phone: "",
-        email: "",
-        catName: "",
-        breed: "",
-        sex: "",
-        age: "",
-        vaccinated: false,
-        checkIn: "",
-        checkOut: "",
-        dropOffTime: "",
-        pickUpTime: "",
-        pricePerNight: NIGHTLY_DEFAULT,
-        notes: "",
-      };
-    }
+export default function HotelReservation() {
+  const [formData, setFormData] = useState({
+    checkInDate: "",
+    checkOutDate: "",
+    estimatedArrival: "Morning",
+    ownerInfo: {
+      firstName: "",
+      phoneNumber: "",
+      address: ""
+    },
+    catInfo: {
+      catName: "",
+      breed: "Angora",
+      age: "",
+      numberOfCats: "",
+      gender: "Male",
+      sterilized: false,
+      vaccinationNotebook: "Updated",
+      antiParasiteTreatment: false,
+      lastTreatmentDate: ""
+    },
+    healthProblems: "",
+    usualFood: "",
+    specialNotes: "",
+    additionalServices: {
+      cleaningDecorating: false,
+      specialMedicalCare: false,
+      sendPicturesVideos: false
+    },
+    agreement: false
   });
 
-  const [errors, setErrors] = useState({});
-  const nights = useMemo(() => calcNights(form.checkIn, form.checkOut), [form.checkIn, form.checkOut]);
-  const total = useMemo(() => (Number(form.pricePerNight) || 0) * nights, [form.pricePerNight, nights]);
+  const handleChange = (
+    e
+  ) => {
+    const { name, value, type, checked } = e.target;
 
-  useEffect(() => {
-    localStorage.setItem(LS_DRAFT, JSON.stringify(form));
-  }, [form]);
+    // Handle nested fields like "ownerInfo.firstName" or "catInfo.age"
+    if (name.includes(".")) {
+      const keys = name.split(".");
+      setFormData((prev) => {
+        let nested = { ...prev[keys[0]] };
 
-  const onChange = (k) => (e) => {
-    const val = e?.target?.type === "checkbox" ? e.target.checked : e.target.value;
-    setForm((s) => ({ ...s, [k]: val }));
-  };
+        nested[keys[1]] =
+          type === "checkbox"
+            ? checked
+            : type === "number"
+            ? Number(value)
+            : value;
 
-  const validate = () => {
-    const e = {};
-    if (!form.ownerName.trim()) e.ownerName = "Owner name is required";
-    if (!form.catName.trim()) e.catName = "Cat name is required";
-    if (!form.checkIn) e.checkIn = "Check‑in is required";
-    if (!form.checkOut) e.checkOut = "Check‑out is required";
-    if (form.email && !/^\S+@\S+\.\S+$/.test(form.email)) e.email = "Invalid email";
-    if (form.phone && !/^\+?[0-9\s()-]{6,}$/.test(form.phone)) e.phone = "Invalid phone";
-    if (form.checkIn && form.checkOut && new Date(form.checkOut) <= new Date(form.checkIn)) {
-      e.checkOut = "Check‑out must be after check‑in";
+        return { ...prev, [keys[0]]: nested };
+      });
+    } else {
+      // Handle top-level fields
+      setFormData((prev) => ({
+        ...prev,
+        [name]:
+          type === "checkbox"
+            ? checked
+            : type === "number"
+            ? Number(value)
+            : value
+      }));
     }
-    setErrors(e);
-    return Object.keys(e).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validate()) return;
-    alert(`Booking received for ${form.catName}!\nNights: ${nights}\nTotal: ${total.toFixed(2)} GEL`);
-  };
-
-  const clearDraft = () => {
-    localStorage.removeItem(LS_DRAFT);
-    setForm({
-      ownerName: "",
-      phone: "",
-      email: "",
-      catName: "",
-      breed: "",
-      sex: "",
-      age: "",
-      vaccinated: false,
-      checkIn: "",
-      checkOut: "",
-      dropOffTime: "",
-      pickUpTime: "",
-      pricePerNight: NIGHTLY_DEFAULT,
-      notes: "",
-    });
-    setErrors({});
+    console.log("Final Data to send:", formData);
+    // Send to backend here
   };
 
   return (
-    <div className="p-4 md:p-6">{/* no SideBar; no ml-16 */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-        <div className="p-4 border-b border-gray-200">
-          <h3 className="text-lg font-semibold flex items-center gap-2">
-            <FaCat className="text-gray-400" /> Cat Hotel Booking Form
-          </h3>
+    <form onSubmit={handleSubmit} className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Hotel Reservation</h1>
+
+      {/* Dates */}
+      <div className="flex gap-4 mb-4">
+        <input
+          type="date"
+          name="checkInDate"
+          value={formData.checkInDate}
+          onChange={handleChange}
+          required
+          className="border p-2 rounded"
+        />
+        <input
+          type="date"
+          name="checkOutDate"
+          value={formData.checkOutDate}
+          onChange={handleChange}
+          required
+          className="border p-2 rounded"
+        />
+      </div>
+
+      {/* Arrival */}
+      <div className="mb-4">
+        <label>
+          <input
+            type="radio"
+            name="estimatedArrival"
+            value="Morning"
+            checked={formData.estimatedArrival === "Morning"}
+            onChange={handleChange}
+          />{" "}
+          Morning
+        </label>
+        <label className="ml-4">
+          <input
+            type="radio"
+            name="estimatedArrival"
+            value="Evening"
+            checked={formData.estimatedArrival === "Evening"}
+            onChange={handleChange}
+          />{" "}
+          Evening
+        </label>
+      </div>
+
+      {/* Owner Info */}
+      <fieldset className="border p-4 rounded mb-4">
+        <legend>1. Owner Information</legend>
+        <input
+          name="ownerInfo.firstName"
+          placeholder="First Name"
+          value={formData.ownerInfo.firstName}
+          onChange={handleChange}
+          required
+          className="border p-2 rounded w-full mb-2"
+        />
+        <input
+          name="ownerInfo.phoneNumber"
+          placeholder="Phone Number"
+          value={formData.ownerInfo.phoneNumber}
+          onChange={handleChange}
+          required
+          className="border p-2 rounded w-full mb-2"
+        />
+        <input
+          name="ownerInfo.address"
+          placeholder="Address"
+          value={formData.ownerInfo.address}
+          onChange={handleChange}
+          required
+          className="border p-2 rounded w-full"
+        />
+      </fieldset>
+
+      {/* Cat Info */}
+      <fieldset className="border p-4 rounded mb-4">
+        <legend>2. Cat Information</legend>
+        <input
+          name="catInfo.catName"
+          placeholder="Cat Name"
+          value={formData.catInfo.catName}
+          onChange={handleChange}
+          className="border p-2 rounded w-full mb-2"
+        />
+        <select
+          name="catInfo.breed"
+          value={formData.catInfo.breed}
+          onChange={handleChange}
+          required
+          className="border p-2 rounded w-full mb-2"
+        >
+          <option>Angora</option>
+          <option>Persian</option>
+          <option>Siamese</option>
+        </select>
+        <input
+          type="number"
+          name="catInfo.age"
+          placeholder="Age of Cats"
+          value={formData.catInfo.age}
+          onChange={handleChange}
+          required
+          className="border p-2 rounded w-full mb-2"
+        />
+        <input
+          type="number"
+          name="catInfo.numberOfCats"
+          placeholder="Number of Cats"
+          value={formData.catInfo.numberOfCats}
+          onChange={handleChange}
+          required
+          className="border p-2 rounded w-full mb-2"
+        />
+
+        {/* Gender */}
+        <div className="mb-2">
+          <label>
+            <input
+              type="radio"
+              name="catInfo.gender"
+              value="Male"
+              checked={formData.catInfo.gender === "Male"}
+              onChange={handleChange}
+            />{" "}
+            Male
+          </label>
+          <label className="ml-4">
+            <input
+              type="radio"
+              name="catInfo.gender"
+              value="Female"
+              checked={formData.catInfo.gender === "Female"}
+              onChange={handleChange}
+            />{" "}
+            Female
+          </label>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Owner info */}
-          <div className="md:col-span-2">
-            <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-              <FaUser className="text-gray-400" /> Owner Information
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <div>
-                <label className="block text-xs text-gray-500 mb-1">Owner name *</label>
-                <input
-                  className={`w-full border rounded-md px-3 py-2 ${errors.ownerName ? "border-red-400" : ""}`}
-                  placeholder="e.g., John Smith"
-                  value={form.ownerName}
-                  onChange={onChange("ownerName")}
-                />
-                {errors.ownerName && <p className="mt-1 text-xs text-red-600">{errors.ownerName}</p>}
-              </div>
-              <div>
-                <label className="block text-xs text-gray-500 mb-1">Phone</label>
-                <input
-                  className={`w-full border rounded-md px-3 py-2 ${errors.phone ? "border-red-400" : ""}`}
-                  placeholder="+213 ..."
-                  value={form.phone}
-                  onChange={onChange("phone")}
-                />
-                {errors.phone && <p className="mt-1 text-xs text-red-600">{errors.phone}</p>}
-              </div>
-              <div>
-                <label className="block text-xs text-gray-500 mb-1">Email</label>
-                <input
-                  type="email"
-                  className={`w-full border rounded-md px-3 py-2 ${errors.email ? "border-red-400" : ""}`}
-                  placeholder="name@example.com"
-                  value={form.email}
-                  onChange={onChange("email")}
-                />
-                {errors.email && <p className="mt-1 text-xs text-red-600">{errors.email}</p>}
-              </div>
-            </div>
-          </div>
+        {/* Sterilized */}
+        <div className="mb-2">
+          <label>
+            <input
+              type="radio"
+              name="catInfo.sterilized"
+              value="true"
+              checked={formData.catInfo.sterilized === true}
+              onChange={(e) =>
+                handleChange({
+                  ...e,
+                  target: {
+                    ...e.target,
+                    name: "catInfo.sterilized",
+                    value: "true",
+                    type: "checkbox",
+                    checked: true
+                  }
+                })
+              }
+            />{" "}
+            Yes
+          </label>
+          <label className="ml-4">
+            <input
+              type="radio"
+              name="catInfo.sterilized"
+              value="false"
+              checked={formData.catInfo.sterilized === false}
+              onChange={(e) =>
+                handleChange({
+                  ...e,
+                  target: {
+                    ...e.target,
+                    name: "catInfo.sterilized",
+                    value: "false",
+                    type: "checkbox",
+                    checked: false
+                  }
+                })
+              }
+            />{" "}
+            No
+          </label>
+        </div>
 
-          {/* Cat info */}
-          <div className="md:col-span-2">
-            <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-              <FaCat className="text-gray-400" /> Cat Details
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-              <div className="md:col-span-2">
-                <label className="block text-xs text-gray-500 mb-1">Cat name *</label>
-                <input
-                  className={`w-full border rounded-md px-3 py-2 ${errors.catName ? "border-red-400" : ""}`}
-                  placeholder="e.g., Mittens"
-                  value={form.catName}
-                  onChange={onChange("catName")}
-                />
-                {errors.catName && <p className="mt-1 text-xs text-red-600">{errors.catName}</p>}
-              </div>
-              <label className="flex items-center gap-2 text-sm md:col-span-3">
-                <input type="checkbox" checked={form.vaccinated} onChange={onChange("vaccinated")} />
-                Vaccinated
-              </label>
-            </div>
-          </div>
+        {/* Vaccination */}
+        <div className="mb-2">
+          <label>
+            <input
+              type="radio"
+              name="catInfo.vaccinationNotebook"
+              value="Updated"
+              checked={formData.catInfo.vaccinationNotebook === "Updated"}
+              onChange={handleChange}
+            />{" "}
+            Updated
+          </label>
+          <label className="ml-4">
+            <input
+              type="radio"
+              name="catInfo.vaccinationNotebook"
+              value="Not updated"
+              checked={formData.catInfo.vaccinationNotebook === "Not updated"}
+              onChange={handleChange}
+            />{" "}
+            Not updated
+          </label>
+        </div>
 
-          {/* Dates */}
-          <div className="md:col-span-2">
-            <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-              <FaCalendarAlt className="text-gray-400" /> Stay
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-              <div>
-                <label className="block text-xs text-gray-500 mb-1">Check‑in *</label>
-                <input type="date" className={`w-full border rounded-md px-3 py-2 ${errors.checkIn ? "border-red-400" : ""}`}
-                  value={form.checkIn} onChange={onChange("checkIn")} />
-                {errors.checkIn && <p className="mt-1 text-xs text-red-600">{errors.checkIn}</p>}
-              </div>
-              <div>
-                <label className="block text-xs text-gray-500 mb-1">Check‑out *</label>
-                <input type="date" className={`w-full border rounded-md px-3 py-2 ${errors.checkOut ? "border-red-400" : ""}`}
-                  value={form.checkOut} onChange={onChange("checkOut")} />
-                {errors.checkOut && <p className="mt-1 text-xs text-red-600">{errors.checkOut}</p>}
-              </div>
-              
-            </div>
+        {/* Anti Parasite */}
+        <div className="mb-2">
+          <label>
+            <input
+              type="radio"
+              name="catInfo.antiParasiteTreatment"
+              value="true"
+              checked={formData.catInfo.antiParasiteTreatment === true}
+              onChange={(e) =>
+                handleChange({
+                  ...e,
+                  target: {
+                    ...e.target,
+                    name: "catInfo.antiParasiteTreatment",
+                    value: "true",
+                    type: "checkbox",
+                    checked: true
+                  }
+                })
+              }
+            />{" "}
+            Yes
+          </label>
+          <label className="ml-4">
+            <input
+              type="radio"
+              name="catInfo.antiParasiteTreatment"
+              value="false"
+              checked={formData.catInfo.antiParasiteTreatment === false}
+              onChange={(e) =>
+                handleChange({
+                  ...e,
+                  target: {
+                    ...e.target,
+                    name: "catInfo.antiParasiteTreatment",
+                    value: "false",
+                    type: "checkbox",
+                    checked: false
+                  }
+                })
+              }
+            />{" "}
+            No
+          </label>
+        </div>
 
-            <div className="mt-3 text-sm text-gray-600">
-              Nights: <span className="font-semibold">{nights}</span> •
-              Total: <span className="font-semibold">{total.toFixed(2)} GEL</span>
-            </div>
-          </div>
+        <input
+          type="date"
+          name="catInfo.lastTreatmentDate"
+          value={formData.catInfo.lastTreatmentDate}
+          onChange={handleChange}
+          required
+          className="border p-2 rounded w-full"
+        />
+      </fieldset>
 
-          {/* Notes */}
-          <div className="md:col-span-2">
-            <label className="block text-xs text-gray-500 mb-1">Notes (feeding, meds, special care)</label>
-            <textarea
-              className="w-full border rounded-md px-3 py-2"
-              rows="3"
-              value={form.notes}
-              onChange={onChange("notes")}
-              placeholder="Any instructions we should know?"
-            />
-          </div>
+      {/* Health Problems */}
+      <textarea
+        name="healthProblems"
+        placeholder="Write problems here"
+        value={formData.healthProblems}
+        onChange={handleChange}
+        required
+        className="border p-2 rounded w-full mb-4"
+      />
 
-          {/* Actions */}
-          <div className="md:col-span-2 flex items-center justify-end gap-2 pt-2">
-            <button type="button" onClick={clearDraft}
-              className="px-4 py-2 rounded-full border text-gray-700 hover:bg-gray-50">
-              Clear
-            </button>
-            <button
-              type="submit"
-              className="px-5 py-2 rounded-full bg-[var(--mainOrange)] text-black hover:opacity-90 font-semibold"
-            >
-              Submit booking
-            </button>
-          </div>
-        </form>
+      {/* Usual Food */}
+      <textarea
+        name="usualFood"
+        placeholder="The usual food"
+        value={formData.usualFood}
+        onChange={handleChange}
+        required
+        className="border p-2 rounded w-full mb-4"
+      />
+
+      {/* Special Notes */}
+      <textarea
+        name="specialNotes"
+        placeholder="Special notes or behavior"
+        value={formData.specialNotes}
+        onChange={handleChange}
+        className="border p-2 rounded w-full mb-4"
+      />
+
+      {/* Additional Services */}
+      <fieldset className="border p-4 rounded mb-4">
+        <legend>3. Additional Services</legend>
+        <label>
+          <input
+            type="checkbox"
+            name="additionalServices.cleaningDecorating"
+            checked={formData.additionalServices.cleaningDecorating}
+            onChange={handleChange}
+          />{" "}
+          Cleaning / Decorating during the stay
+        </label>
+        <br />
+        <label>
+          <input
+            type="checkbox"
+            name="additionalServices.specialMedicalCare"
+            checked={formData.additionalServices.specialMedicalCare}
+            onChange={handleChange}
+          />{" "}
+          Special medical care
+        </label>
+        <br />
+        <label>
+          <input
+            type="checkbox"
+            name="additionalServices.sendPicturesVideos"
+            checked={formData.additionalServices.sendPicturesVideos}
+            onChange={handleChange}
+          />{" "}
+          Send pictures/videos during the stay
+        </label>
+      </fieldset>
+
+      {/* Agreement */}
+      <label>
+        <input
+          type="checkbox"
+          name="agreement"
+          checked={formData.agreement}
+          onChange={handleChange}
+        />{" "}
+        I acknowledge the terms of the Cat Hotel...
+      </label>
+
+      <div className="mt-4">
+        <button
+          type="submit"
+          className="bg-blue-500 text-white p-2 rounded"
+        >
+          Submit
+        </button>
       </div>
-    </div>
+    </form>
   );
 }

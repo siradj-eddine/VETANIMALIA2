@@ -97,6 +97,10 @@ export default function Checkout() {
   const [errors, setErrors] = useState({});
   const [total, setTotal] = useState(0);
 
+  const [selectedMethod, setSelectedMethod] = useState("");
+  const methods = ["a domicile", "au bureau"];
+  console.log(selectedMethod);
+  
   const {cart , setCart} = useCart()
 
     const deliveryFee = 600;
@@ -105,20 +109,22 @@ export default function Checkout() {
     setTotal(subtotal);
   }, [cart]);
 
+
   
 async function addOrder() {
-  // Format cart to match: [{ product: "...", quantity: ... }, ...]
   const productsFormatted = cart.map(item => ({
-    product: item._id, // Assuming your cart items have _id
+    product: item._id, 
     quantity: item.quantity || 1
   }));
 
   const orderData = {
+    name : firstName + " " + lastName,
     products: productsFormatted,
     adress: address,
     phoneNb: phoneNumber,
     willaya: selectedWilaya,
-    totalAmount: total + deliveryFee
+    totalAmount: total + deliveryFee,
+    deliveryMethod: selectedMethod
   };
 
   try {
@@ -207,30 +213,6 @@ async function addOrder() {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
-            </Box>{/* Delivery companies */}
-            <h3
-              className="text-lg font-semibold mt-6"
-              style={{ fontFamily: "'Kiwi Maru', serif" }}
-            >
-              2. Delivery Companies
-            </h3>
-            <br />
-            <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
-              {["Yalidine", "DHD", "ZR express", "SARL express"].map((company) => (
-                <Button
-                  key={company}
-                  variant="outlined"
-                  sx={{
-                    borderRadius: "50px",
-                    padding: "8px 20px",
-                    textTransform: "capitalize",
-                    border: "1px solid #F97316",
-                    color : "black"
-                  }}
-                >
-                  {company}
-                </Button>
-              ))}
             </Box>
 
             {/* Delivery method */}
@@ -241,23 +223,35 @@ async function addOrder() {
               3. Delivery Method
             </h3>
             <br />
-            <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
-              {["Home", "The office"].map((method) => (
-                <Button
-                  key={method}
-                  variant="outlined"
-                  sx={{
-                    borderRadius: "50px",
-                    padding: "8px 20px",
-                    textTransform: "capitalize",
-                    border: "1px solid #F97316",
-                    color : "black"
-                  }}
-                >
-                  {method}
-                </Button>
-              ))}
-            </Box>
+<div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+      {methods.map((method) => (
+        <label
+          key={method}
+          style={{
+            border: "1px solid #F97316",
+            borderRadius: "50px",
+            padding: "8px 20px",
+            textTransform: "capitalize",
+            cursor: "pointer",
+            backgroundColor:
+              selectedMethod === method ? "#F97316" : "transparent",
+            color: selectedMethod === method ? "#fff" : "#000",
+            transition: "all 0.2s ease",
+          }}
+        >
+          <input
+            type="radio"
+            name="deliveryMethod"
+            value={method}
+            checked={selectedMethod === method}
+            onChange={(e) => setSelectedMethod(e.target.value)}
+            style={{ display: "none" }}
+            required
+          />
+          {method}
+        </label>
+      ))}
+    </div>
           </section>
         </form>
 
@@ -270,7 +264,7 @@ async function addOrder() {
 
           <div className="flex flex-col gap-3 justify-between">
             {cart.map((item) => 
-            <div className="flex gap-5">
+            <div className="flex gap-5" key={item._id}>
               <img src={item.image[0].url} alt={item.name} width={70} className="border border-orange-500 rounded-lg"/>
               <div className="flex flex-col">
                 <span className="font-medium">{item.name}</span>

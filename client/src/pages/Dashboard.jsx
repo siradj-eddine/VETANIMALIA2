@@ -79,7 +79,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="flex flex-row md:flex-row">
+    <div className="flex flex-row md:flex-row justify-center">
       <SideBar />
       <main className="p-4 md:p-6 space-y-6 max-md:ml-10 md:ml-20 max-sm:ml-0 w-[90%]">
         {/* Stats Section */}

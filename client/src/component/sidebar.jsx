@@ -26,21 +26,21 @@ const SideBar = ({ className }) => {
       {isMobile && (
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`fixed h-screen overflow-w-auto  z-50 p-2 bg-white rounded-md shadow top-0 left-0 max-sm:mt-21 transition-all duration-300
+          className={`fixed overflow-w-auto  z-50 p-2 bg-white rounded-md shadow top-0 left-0 max-sm:mt-21 transition-all duration-300
              -translate-x-4 ${isOpen ? "translate-x-48" : ""} sm:mt-22 ml-1`}
           aria-label="Toggle menu"
         >
-          {isOpen ? <MdClose size={24} className='max-sm:w-3 max-sm:h-3'/> : <MdMenu size={24} className='max-sm:w-3 max-sm:h-3 rotate-90 ml-2'/>}
+          {isOpen ? <MdClose size={35} className='max-sm:w-3 max-sm:h-3'/> : <MdMenu size={35} className='max-sm:w-4 max-sm:h-6 rotate-90 ml-2'/>}
         </button>
       )}
 
       <div
-        className={` fixed h-screen   z-40 w-64 bg-white shadow-xl transition-all duration-300 
+        className={` fixed h-screen z-40 w-64 bg-white shadow-xl transition-all duration-300 
           ease-in-out top-25
-          ${isMobile ? (isOpen ? 'left-0' : '-left-64') : 'left-0 md:w-17 md:hover:w-64'} 
+          ${isMobile ? (isOpen ? 'left-0 -translate-y-8' : '-left-64 -translate-y-8') : 'left-0 md:w-17 md:hover:w-64'} 
           ${className}`}
       >
-        <div className="ml-3 p-4 overflow-hidden  h-full">
+        <div className="ml-3 p-4 overflow-hidden h-full ">
           <h2 className="text-xl max-md:mt-15 font-bold mb-6 whitespace-nowrap md:ml-10 md:group-hover:opacity-100 transition-opacity duration-300">
             Paneau Admin
           </h2>
@@ -94,18 +94,7 @@ const SideBar = ({ className }) => {
                   </span>
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/dashboard/Appointments"
-                  className="flex items-center text-gray-700 hover:text-[#ff6c00] transition-all"
-                  onClick={() => isMobile && setIsOpen(false)}
-                >
-                  <FaClipboardList size={24} className="flex-shrink-0" />
-                  <span className="ml-4 whitespace-nowrap md:group-hover:opacity-100 transition-opacity duration-300">
-                    Rendez-vous
-                  </span>
-                </Link>
-              </li>
+              
               <li>
                 <Link
                   to="/dashboard/Reservations"
