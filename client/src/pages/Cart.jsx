@@ -5,10 +5,11 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import cat from "../photo/imgs/cat-removebg-preview (1) 2.png";
 import { useCart } from "../Context/cartContext";
+import{ useTranslation } from "react-i18next";
 
 export default function Cart() {
   const { cart, setCart } = useCart();
-
+  const {t} = useTranslation();
   const incrementQty = (id) => {
     setCart((prev) =>
       prev.map((item) =>
@@ -45,15 +46,15 @@ export default function Cart() {
   const total = subtotal + deliveryFee;
 
   return (
-    <main
+     <main
       className="mx-auto max-w-6xl px-6 py-10"
       style={{ fontFamily: "Kiwi Maru, serif" }}
     >
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-row justify-between mx-8 items-center">
         <h1 className="text-3xl font-semibold mb-8 text-gray-800">
-          Shopping Cart
+          {t("cart.title")}
         </h1>
-        <img src={cat} alt="" className="w-[8%] max-lg:hidden" />
+        <img src={cat} alt={t("cart.catImageAlt")} className="w-[8%] max-lg:hidden " />
       </div>
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px]">
@@ -62,10 +63,10 @@ export default function Cart() {
           {cart.length ? (
             <div className="overflow-x-auto">
               <header className="grid grid-cols-4 border-b-4 border-gray-600 pb-3 font-semibold text-center">
-                <div>Name</div>
-                <div>Quantity</div>
-                <div>Price</div>
-                <div className="text-right">Remove</div>
+                <div>{t("cart.headers.name")}</div>
+                <div>{t("cart.headers.quantity")}</div>
+                <div>{t("cart.headers.price")}</div>
+                <div className="text-right">{t("cart.headers.remove")}</div>
               </header>
 
               <div>
@@ -74,15 +75,15 @@ export default function Cart() {
                     key={`${it._id}`}
                     className="grid grid-cols-4 border-gray-400 items-center"
                   >
-                    <div className="flex items-center py-4 ">
+                    <div className="flex items-center py-4">
                       {it.image && (
                         <img
                           src={it.image[0].url}
                           alt={it.name}
-                          className="w-12 h-12 object-contain mr-8"
+                          className="w-12 h-12 object-contain "
                         />
                       )}
-                      <span className="font-medium text-gray-800">
+                      <span className="font-medium text-gray-800 mx-8">
                         {it.name}
                       </span>
                     </div>
@@ -100,7 +101,7 @@ export default function Cart() {
                     </div>
 
                     <div className="text-right py-4 font-medium text-gray-700">
-                      {it.price * it.quantity} DZD
+                      {it.price * it.quantity} {t("cart.currency")}
                     </div>
 
                     <div className="flex justify-center">
@@ -114,9 +115,9 @@ export default function Cart() {
             </div>
           ) : (
             <div className="rounded-lg border-2 border-dashed border-gray-300 p-8 text-center">
-              <p className="mb-2 text-gray-600">Your cart is empty.</p>
-              <Link to="/products" className="text-orange-500 hover:underline">
-                Continue shopping
+              <p className="mb-2 text-gray-600">{t("cart.emptyMessage")}</p>
+              <Link to="/" className="text-orange-500 hover:underline">
+                {t("cart.continueShopping")}
               </Link>
             </div>
           )}
@@ -125,27 +126,27 @@ export default function Cart() {
         {/* RIGHT: summary */}
         <aside className="bg-gray-50 border-2 border-orange-400 rounded-3xl p-6 lg:sticky lg:top-24 shadow-md">
           <h3 className="text-xl font-semibold mb-4 flex justify-center text-gray-800">
-            Summary
+            {t("cart.summary.title")}
           </h3>
           <hr className="my-3" />
 
           <div className="space-y-3 mb-4">
             <div className="flex justify-between">
-              <span>Order total</span>
-              <span className="font-medium">{subtotal} DZD</span>
+              <span>{t("cart.summary.orderTotal")}</span>
+              <span className="font-medium">{subtotal} {t("cart.currency")}</span>
             </div>
 
             <div className="flex justify-between">
-              <span>Delivery Service</span>
-              <span className="font-medium">+{deliveryFee} DZD</span>
+              <span>{t("cart.summary.delivery")}</span>
+              <span className="font-medium">+{deliveryFee} {t("cart.currency")}</span>
             </div>
           </div>
 
           <div className="border-t border-gray-200 pt-4 mb-6">
             <div className="flex justify-between">
-              <span className="font-semibold">Total</span>
+              <span className="font-semibold">{t("cart.summary.total")}</span>
               <span className="font-semibold text-lg text-gray-800">
-                {total} DZD
+                {total} {t("cart.currency")}
               </span>
             </div>
           </div>
@@ -157,13 +158,13 @@ export default function Cart() {
             }`}
           >
             <Link to="/checkout">
-              Checkout ({cart.length} item{cart.length !== 1 ? "s" : ""})
+              {t("cart.checkoutButton")} ({cart.length} {t(`cart.item${cart.length !== 1 ? "s" : ""}`)})
             </Link>
           </button>
 
           <div className="mt-4 text-center text-sm">
             <Link to="/products" className="text-orange-500 hover:underline">
-              Continue shopping
+              {t("cart.continueShopping")}
             </Link>
           </div>
         </aside>

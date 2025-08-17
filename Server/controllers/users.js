@@ -67,6 +67,17 @@ const deleteUser = async(req , res)=>{
     res.status(StatusCodes.OK).send("user deleted successfully");
 }
 
+const makeAdmin = async (req, res) => {
+    const { id: userID } = req.params;
+    const user = await User.findById(userID);
+    if (!user) throw new NotFound(`no user with the id : ${userID}`);
+
+    user.role = "admin";
+    await user.save();
+
+    res.status(StatusCodes.OK).json({ user });
+};
+
 module.exports = {
     getAllUsers,
     getSingleUser,
@@ -74,4 +85,5 @@ module.exports = {
     updateUser,
     uploadAvatar,
     deleteUser,
+    makeAdmin,
 }

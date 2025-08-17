@@ -21,13 +21,7 @@ const RendezVous = () => {
         form.current,
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
            {
-      // Explicitly map form fields to template variables
-      // parentName: e.target.parentName.value,
-      // petName: e.target.petName.value,
-      // petBreed: e.target.petBreed.value,
-      // meetDate: e.target.meetDate.value,
-      // phoneNumber: e.target.phoneNumber.value,
-      // symptoms: e.target.symptoms.value
+      
     }
       )
       .then(
@@ -47,7 +41,7 @@ const RendezVous = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen w-full flex flex-col font-sans">
+    <div className="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen w-full flex flex-col font-sans" style={{ fontFamily: "Kiwi Maru, serif" }}>
       <main className="flex justify-center items-center py-16 px-4 sm:px-6 lg:px-8">
         <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-4xl">
           <header className="text-center mb-10">

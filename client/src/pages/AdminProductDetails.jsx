@@ -56,10 +56,10 @@ const AdminProductDetails = () => {
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-4xl font-semibold text-orange-600">Product Details</h1>
           <Link
-            to="/dashboard/admin-products"
+            to="/dashboard/adminProducts"
             className="text-sm text-orange-500 hover:underline"
           >
-            Back to Products
+            Retour Vers la liste des produits
           </Link>
         </div>
 

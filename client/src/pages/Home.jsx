@@ -125,7 +125,7 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6  " style={{ fontFamily: "Kiwi Maru, serif" }}>
       {/* Hero Section */}
       <section 
         className="flex flex-col pt-3 my-0 sm:flex-row items-center justify-center px-4 sm:px-8 md:px-16 rounded-3xl space-y-8 sm:space-y-0 sm:space-x-8 md:space-x-16 transition-all duration-300"
@@ -139,7 +139,7 @@ const HomePage = () => {
         />
 
         <div className={`text-center sm:text-left w-full sm:w-1/2 space-y-4 ${isRTL ? 'text-right' : 'text-left'}`}>
-          <h1 id="hero-heading" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+          <h1 id="hero-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
             {t('hero.title1')} <br />
             <span className="text-[var(--mainOrange)]">{t('hero.title2')}</span>
           </h1>
@@ -168,185 +168,165 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section 
-        className="px-4 py-8 sm:py-12 mb-4 bg-[var(--mainOrange)] text-center flex flex-col
-         rounded-3xl mx-2 sm:mx-8 md:mx-16 transition-all duration-300 max-sm:mt-10"
-        aria-labelledby="about-heading"
-      >
-        <div className="flex justify-between items-center w-full mb-6 sm:mb-8">
-          <h2 id="about-heading" className={`text-2xl sm:text-3xl w-1/2 max-sm:w-full font-semibold text-gray-800 mb-4 sm:mb-0 ${isRTL ? 'text-right' : 'text-left'}`}>
-            {t('about.title')}
-          </h2>
-        </div>
+      {/* ABOUT */}
+        <section
+          aria-labelledby="about-heading"
+          className="mt- rounded-3xl bg-[var(--mainOrange)]/10 p-6 sm:p-8  ring-1 ring-[var(--mainOrange)]/20"
+        >
+          <div className="mb-6 flex items-center justify-between">
+            <h2 id="about-heading" className={`text-2xl sm:text-3xl font-semibold text-gray-900 ${isRTL ? "text-right" : "text-left"}`}>
+              {t("about.title")}
+            </h2>
+          </div>
 
-        <div className="flex flex-col lg:flex-row justify-center w-full gap-4 sm:gap-6 md:gap-8 px-2 sm:px-4">
-          <article className="flex flex-col bg-white p-3 sm:p-4 items-center rounded-3xl shadow-lg w-full lg:w-2/5 transition-all duration-300 hover:shadow-xl">
-            <img
-              src={clinicImage}
-              alt={t('about.aboutUsImageAlt')}
-              className="w-fit rounded-xl mb-4 object-cover transition-transform duration-500 hover:scale-105"
-              loading="lazy"
-            />
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">
-              {t('about.aboutUsTitle')}
-            </h3>
-            <p className="text-gray-600 text-center sm:text-left">
-              {t('about.aboutUsDescription')}
-            </p>
-          </article>
+          <div className="grid gap-6 lg:grid-cols-5">
+            {/* left card */}
+            <article className="lg:col-span-2 rounded-2xl bg-white p-5 shadow-lg ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-xl">
+              <div className="overflow-hidden rounded-xl">
+                <img
+                  src={clinicImage}
+                  alt={t("about.aboutUsImageAlt")}
+                  className="h-56 w-full object-cover transition-transform duration-500 hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <h3 className="mt-4 text-xl font-semibold text-gray-900">{t("about.aboutUsTitle")}</h3>
+              <p className="mt-2 text-gray-600">{t("about.aboutUsDescription")}</p>
+            </article>
 
-          <div className="w-full lg:w-3/5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            {/* right info grid */}
+            <div className="lg:col-span-3 grid gap-6 sm:grid-cols-2">
               {infoCards.map((info) => (
                 <article
                   key={info.id}
-                  className={`bg-white p-4 sm:p-6 rounded-3xl shadow-lg w-full min-h-[200px] sm:min-h-[270px] flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${isRTL ? 'text-right' : 'text-left'}`}
+                  className={`rounded-2xl bg-white p-5 shadow-lg ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-xl ${isRTL ? "text-right" : "text-left"}`}
                 >
-                  <div className="flex justify-between items-center mb-3 sm:mb-4">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 mr-3">
-                      {info.title}
-                    </h2>
+                  <div className="mb-3 flex items-center justify-between">
+                    <h3 className="text-xl font-semibold text-gray-900">{info.title}</h3>
                     <img
                       src={info.image}
                       alt={info.alt}
-                      className="w-12 h-12 sm:w-16 sm:h-16 rounded-md object-contain transition-transform duration-300 hover:rotate-12"
+                      className="h-12 w-12 rounded-md object-contain"
                       loading="lazy"
                     />
                   </div>
-                  <p className="text-gray-600 text-sm text-start sm:text-base">
-                    {info.description}
-                  </p>
+                  <p className="text-gray-600">{info.description}</p>
                 </article>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Services Section */}
-      <div className="bg-gray-100 min-h-screen font-serif rounded-3xl px-4 sm:px-6 md:px-8 py-8 transition-all duration-300">
-        <header className="flex justify-center text-black text-center py-4 sm:py-6">
-          <h1 className="font-light text-3xl sm:text-4xl transition-all duration-300">
-            {t('servicesSection.title')}
-          </h1>
-        </header>
+        {/* SERVICES */}
+        <section aria-labelledby="services-heading" className="mt-10">
+          <header className="text-center">
+            <h2 id="services-heading" className="text-3xl sm:text-4xl font-semibold text-gray-900">
+              {t("servicesSection.title")}
+            </h2>
+          </header>
 
-        <main>
-          {/* Primary Services */}
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 my-4 sm:my-6">
+          {/* primary */}
+          <div className="mt-6 grid gap-6 lg:grid-cols-2">
             {primaryServices.map((service) => (
               <article
                 key={service.id}
-                className={`flex flex-col sm:flex-row ${service.color} p-4 sm:p-6 shadow-lg rounded-3xl ${isRTL ? 'text-right' : 'text-left'}`}
+                className={`${service.color} relative overflow-hidden rounded-2xl p-6 text-white shadow-lg ring-1 ring-black/5`}
               >
-                <div className="w-full sm:w-2/3 mb-4 sm:mb-0 sm:pr-4">
-                  <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">
-                    {service.title}
-                  </h2>
-                  <p className="text-white text-sm sm:text-base leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-                <div className="w-full sm:w-1/3 flex items-center justify-center">
-                  <img
-                    src={service.image}
-                    alt={service.alt}
-                    className="w-24 h-24 sm:w-32 sm:h-32 object-contain transition-transform duration-500 hover:scale-110"
-                    loading="lazy"
-                  />
-                </div>
-              </article>
-            ))}
-          </section>
-
-          {/* Secondary Services */}
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 my-4 sm:my-6">
-            {secondaryServices.map((service) => (
-              service.buttonText ? (
-                <Link to='/contact' key={service.id} aria-label={`Learn more about ${service.title}`}>
-                  <article
-                    className={`flex flex-col justify-between ${service.color} p-4 sm:p-6 shadow-lg rounded-3xl ${isRTL ? 'text-right' : 'text-left'}`}
-                  >
-                    <div className="flex flex-col items-center sm:items-start">
-                      <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2 sm:mb-4">
-                        {service.title}
-                      </h2>
-                      <p className="text-white text-sm sm:text-base leading-relaxed text-center sm:text-left mb-4 sm:mb-6">
-                        {service.description}
-                      </p>
-                    </div>
-                    {service.image && (
-                      <div className="flex justify-center sm:justify-start mb-4 sm:mb-6">
-                        <img
-                          src={service.image}
-                          alt={service.alt}
-                          className="w-24 h-24 sm:w-32 sm:h-32 object-contain"
-                          loading="lazy"
-                        />
-                      </div>
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+                  <div className="sm:w-2/3">
+                    <h3 className="text-2xl font-semibold">{service.title}</h3>
+                    <p className="mt-2 text-white/90">{service.description}</p>
+                    {service.buttonText && (
+                      <Link
+                        to="/contact"
+                        className="mt-4 inline-flex rounded-xl bg-white/95 px-4 py-2 font-medium text-black shadow hover:bg-white"
+                      >
+                        {service.buttonText}
+                      </Link>
                     )}
-                  </article>
-                </Link>
-              ) : (
-                <article
-                  key={service.id}
-                  className={`flex flex-col justify-between ${service.color} p-4 sm:p-6 shadow-lg rounded-3xl ${isRTL ? 'text-right' : 'text-left'}`}
-                >
-                  <div className="flex flex-col items-center sm:items-start">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2 sm:mb-4">
-                      {service.title}
-                    </h2>
-                    <p className="text-white text-sm sm:text-base leading-relaxed text-center sm:text-left mb-4 sm:mb-6">
-                      {service.description}
-                    </p>
                   </div>
-                  {service.image && (
-                    <div className="flex justify-center sm:justify-start mb-4 sm:mb-6">
+                  <div className="sm:w-1/3">
+                    <div className="mx-auto aspect-square w-28 overflow-hidden rounded-xl bg-white/10 p-2 backdrop-blur">
                       <img
                         src={service.image}
                         alt={service.alt}
-                        className="w-24 h-24 sm:w-32 sm:h-32 object-contain transition-transform duration-500 hover:scale-110"
+                        className="h-full w-full object-contain"
                         loading="lazy"
                       />
                     </div>
-                  )}
-                </article>
-              )
+                  </div>
+                </div>
+              </article>
             ))}
-          </section>
-        </main>
-
-        {/* Pet Tips Section */}
-        <section 
-          className="bg-[#d2ac11] flex flex-col sm:flex-row text-center sm:text-left py-4 sm:py-6 px-4 sm:px-6 rounded-3xl my-4 sm:my-6 transition-all duration-300"
-          aria-labelledby="pet-tips-heading"
-        >
-          <div className="flex justify-center sm:justify-start mb-4 sm:mb-0 sm:mr-4">
-            <img
-              src={largeDogImage}
-              alt={t('tipsSection.imageAlt')}
-              className="w-32 h-32 sm:w-40 sm:h-40 rounded-4xl object-cover"
-              loading="lazy"
-            />
           </div>
-          <div className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>
-            <h2 id="pet-tips-heading" className="text-xl sm:text-2xl font-extrabold text-gray-800 mb-2">
-              {t('tipsSection.title')}
-            </h2>
-            <p className="text-gray-700 text-sm mb-3 mr-3 leading-relaxed">
-              {t('tipsSection.description1')}
-              <span className="max-lg:hidden block mr-1">
-                {t('tipsSection.description2')}
-              </span>
-            </p>
+
+          {/* secondary */}
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {secondaryServices.map((service) => {
+              const Card = (
+                <article
+                  key={service.id}
+                  className={`${service.color} group relative overflow-hidden rounded-2xl p-6 text-white shadow-lg ring-1 ring-black/5 transition`}
+                >
+                  <div className="flex min-h-[200px] flex-col justify-between">
+                    <div>
+                      <h3 className="text-2xl font-semibold">{service.title}</h3>
+                      <p className="mt-2 text-white/90">{service.description}</p>
+                    </div>
+                    {service.image && (
+                      <div className="mt-4 flex items-end">
+                        <div className="aspect-square w-24 overflow-hidden rounded-xl bg-white/10 p-2 backdrop-blur">
+                          <img
+                            src={service.image}
+                            alt={service.alt}
+                            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-110"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </article>
+              );
+
+              return service.buttonText ? (
+                <Link to="/contact" key={`link-${service.id}`} aria-label={`Learn more about ${service.title}`}>
+                  {Card}
+                </Link>
+              ) : (
+                Card
+              );
+            })}
           </div>
         </section>
-      </div>
 
-      {/* Blog Section */}
-      <section 
-        className="flex flex-col flex-wrap justify-between bg-gray-200 text-center py-8 sm:py-12 px-4 sm:px-6 rounded-3xl mx-2 sm:mx-8 md:mx-16 mb-8 sm:mb-12 transition-all duration-300"
+        {/* PET TIPS */}
+        <section
+          aria-labelledby="pet-tips-heading"
+          className="mt-10 rounded-3xl bg-[#d2ac11] p-6 text-gray-900 shadow-lg ring-1 ring-black/5"
+        >
+          <div className="flex flex-col items-center gap-6 sm:flex-row">
+            <img
+              src={largeDogImage}
+              alt={t("tipsSection.imageAlt")}
+              className="h-40 w-40 rounded-2xl object-cover"
+              loading="lazy"
+            />
+            <div className={`flex-1 ${isRTL ? "text-right" : "text-left"}`}>
+              <h3 id="pet-tips-heading" className="text-2xl font-extrabold">
+                {t("tipsSection.title")}
+              </h3>
+              <p className="mt-2 leading-relaxed text-gray-800">
+                {t("tipsSection.description1")}
+                <span className="mt-1 block">{t("tipsSection.description2")}</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* BLOG */}
+        <section 
+        className="flex flex-col flex-wrap justify-between bg-gray-200 text-center py-8 sm:py-12 px-4 sm:px-6 rounded-3xl mt-8 sm:mb-12 transition-all duration-300"
         aria-labelledby="blog-heading"
       >
         <header className="w-full mb-6 sm:mb-8">

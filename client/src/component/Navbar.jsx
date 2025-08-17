@@ -283,20 +283,45 @@ const Navbar = () => {
         </ul>
 
         <div className="flex p-2 border-t border-gray-100 space-x-2">
-          <Link
-            to="/login"
-            className="flex-1 text-center px-2 py-2 bg-[#FFBD89] text-white hover:bg-orange-400 rounded-full text-xs sm:text-sm"
-            onClick={() => setIsOpen(false)}
-          >
-            {t("navbar.login")}
-          </Link>
-          <Link
-            to="/RendezVous"
-            className="flex-1 text-center px-2 py-2 bg-[#FFBD89] text-white hover:bg-orange-400 rounded-full text-xs sm:text-sm"
-            onClick={() => setIsOpen(false)}
-          >
-            {t("navbar.appointment")}
-          </Link>
+        {isAuthenticated && user ? (
+          <>
+            <button
+              className="px-3 w-full lg:px-5 py-1 text-center bg-[#FFBD89] text-white
+      hover:bg-orange-400 rounded-full transition duration-300 text-sm lg:text-base"
+              onClick={()=>{
+                logout();
+                toast.success(t("navbar.logout_success"));
+              }}
+            >
+              {t("navbar.logout")}
+            </button>
+                        <button
+              className="px-3 w-full lg:px-5 py-1 text-center bg-[#FFBD89] text-white
+      hover:bg-orange-400 rounded-full transition duration-300 text-sm lg:text-base"
+              onClick={()=>{
+                logout();
+                toast.success(t("navbar.logout_success"));
+              }}
+            >
+              {t("navbar.appointment")}
+            </button>
+          </>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              className="px-3 lg:px-5 py-1 text-center bg-[#FFBD89] text-white hover:bg-orange-400 rounded-full transition duration-300 text-sm lg:text-base"
+            >
+              {t("navbar.login")}
+            </Link>
+            <Link
+              to="/signUp"
+              className="px-3 lg:px-5 py-1 text-center bg-[#FFBD89] text-white hover:bg-orange-400 rounded-full transition duration-300 text-sm lg:text-base"
+            >
+              {t("navbar.signup")}
+            </Link>
+          </>
+        )}
         </div>
       </div>
     </nav>

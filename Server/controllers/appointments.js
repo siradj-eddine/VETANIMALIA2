@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const Appointment = require('../models/Appointments');
+const Appointment = require('../models/appointments');
 const NotFound = require('../errors/NotFound');
 const Unauthenticated = require('../errors/Unauthenticated');
 
@@ -19,10 +19,15 @@ exports.getAppointmentById = async (req, res) => {
 
 // Create new appointment
 exports.createAppointment = async (req, res) => {
-    const {date, breed , kind , symptoms , additionalInfo} = req.body;
-    if(!req.user) throw new Unauthenticated("not Authenticated");
-    const appointment = await Appointment.create({date, breed, kind, symptoms, additionalInfo, user: req.user.userID});
-    res.status(StatusCodes.CREATED).json(appointment);
+    const {name , date, breed , kind , symptoms , additionalInfo} = req.body;
+    if(req.user) {
+        const appointment = await Appointment.create({name , date, breed, kind, symptoms, additionalInfo, user: req.user.userID});
+        res.status(StatusCodes.CREATED).json(appointment);
+    }else{
+            const appointment = await Appointment.create({name , date, breed, kind, symptoms, additionalInfo});
+        res.status(StatusCodes.CREATED).json(appointment);
+    
+    }
 };
 
 // Update appointment

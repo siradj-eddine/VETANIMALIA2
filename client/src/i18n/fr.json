@@ -98,10 +98,9 @@
     "login": "Se connecter",
     "appointment": "Rendez-vous",
     "signup": "S'inscrire",
+    "logout" : "Se déconnecter",
     "dashboard": "Tableau de bord",
-    "catHotel": "Hôtel pour chats",
-    "logout": "Se déconnecter",
-    "logout_success": "Déconnexion réussie"
+    "catHotel": "Hôtel des chats"
   },
   "sidebar": {
     "toggle_menu": "Afficher / masquer le menu",
@@ -171,14 +170,75 @@
     "send": "Envoyer le message",
     "doctor_title":"Vétérinaire principal"
   },
+"products": {
+  "title": "Nos Produits",
+  "searchImageAlt": "Recherche de produits",
+  "searchPlaceholder": "Que recherchez-vous ?",
+  "noProducts": "Aucun produit trouvé",
+  "currency": "DZD",
+  "categories": {
+    "all": "Tous",
+    "dogs": "Chiens",
+    "cats": "Chats",
+    "birds": "Oiseaux",
+    "fish": "Poissons",
+    "reptiles": "Reptiles"
 
-  "dashboard": {
-    "totalSales": "Ventes totales",
-    "products": "Produits",
-    "orders": "Commandes",
-    "customers": "Clients",
-    "recentOrders": "Commandes récentes"
+  }
+},
+"cart": {
+  "title": "Panier",
+  "catImageAlt": "Image de chat",
+  "headers": {
+    "name": "Nom",
+    "quantity": "Quantité",
+    "price": "Prix",
+    "remove": "Supprimer"
   },
+  "currency": "DZD",
+  "emptyMessage": "Votre panier est vide",
+  "continueShopping": "Continuer vos achats",
+  "summary": {
+    "title": "Résumé",
+    "orderTotal": "Total des articles",
+    "delivery": "Frais de livraison",
+    "total": "Total"
+  },
+  "checkoutButton": "Passer la commande",
+  "item": "article",
+  "items": "articles"
+},
+"checkout": {
+  "title": "Paiement",
+  "dogImageAlt": "Image de chien",
+  "contactInfo": "Informations de contact",
+  "firstName": "Prénom",
+  "deliveryMethod1" : "au Bureau",
+  "deliveryMethod2" : "a Domicile",
+  "firstNamePlaceholder": "Prénom",
+  "lastName": "Nom de famille",
+  "lastNamePlaceholder": "Nom de famille",
+  "phoneNumber": "Numéro de téléphone",
+  "phonePlaceholder": "Numéro de téléphone",
+  "wilaya": "Wilaya",
+  "address": "Adresse",
+  "addressPlaceholder": "Adresse",
+  "deliveryCompanies": "Sociétés de livraison",
+  "deliveryCompaniesList": ["Yalidine", "DHD", "ZR express", "SARL express"],
+  "deliveryMethod": "Méthode de livraison",
+  "deliveryMethods": ["Domicile", "Bureau"],
+  "item": "article",
+  "items": "articles",
+  "quantity": "Quantité",
+  "total": "Total",
+  "subtotal": "Sous-total",
+  "deliveryService": "Service de livraison",
+  "currency": "DZD",
+  "orderButton": "Commander",
+  "successMessage": "Commande créée avec succès!",
+  "errorMessage": "Erreur lors de la création de la commande"
+},
+  
   "table": {
     "orderId": "ID de commande",
     "customer": "Client",
@@ -194,6 +254,8 @@
   },
 
   "login": {
+    "success": "Connexion réussie !",
+    "error": "Erreur de connexion. Veuillez vérifier vos identifiants.",
     "title": "Connexion",
     "subtitle": "Accédez à votre espace personnel VETANIMALIA",
     "welcome": "Bienvenue de retour",
@@ -301,9 +363,400 @@
     "privacy": "J'accepte la politique de confidentialité",
     "submit": "Confirmer le Rendez-vous",
     "emergency": "Pour les urgences, veuillez appeler directement le"
+  }
+  ,
+  
+  "catHotel": {
+    "hotelReservation": { "title": "Réservation d'hôtel pour chats" },
+    "form": {
+      "checkInDate": "Date de de départ",
+      "checkOutDate": "Date de Retour",
+      "estimatedArrival": "Heure d'arrivée estimée",
+      "morning": "Matin",
+      "evening": "Soir",
+
+      "ownerInfo": "Informations du propriétaire",
+      "firstName": "Prénom",
+      "phoneNumber": "Numéro de téléphone",
+      "address": "Adresse",
+
+      "additionalServices": "Services supplémentaires (optionnel)",
+      "cleaningDecorating": "Nettoyage / Décoration pendant le séjour",
+      "specialMedicalCare": "Soins médicaux spéciaux",
+      "sendPicturesVideos": "Envoi de photos/vidéos pendant le séjour",
+
+      "requiredDocuments": "Documents requis",
+      "vaccinationRecord": "Carnet de vaccination à jour",
+      "idCardCopy": "Copie de la pièce d’identité",
+
+      "agreement": "J’accepte le règlement de l’hôtel et j’autorise le traitement de mes données pour cette réservation.",
+
+      "catInfo": "Informations sur le chat",
+      "catName": "Nom du chat",
+      "breeds": {
+        "angora": "Angora",
+        "persian": "Persan",
+        "siamese": "Siamois"
+      },
+      "age": "Âge (en années)",
+      "numberOfCats": "Nombre de chats",
+      "gender": "Sexe",
+      "male": "Mâle",
+      "female": "Femelle",
+      "sterilized": "Stérilisé / Castré",
+      "yes": "Oui",
+      "no": "Non",
+      "vaccinationNotebook": "Carnet de vaccination",
+      "updated": "À jour",
+      "notUpdated": "Non à jour",
+      "antiParasiteTreatment": "Traitement antiparasitaire",
+      "lastTreatmentDate": "Date du dernier traitement",
+
+      "healthProblems": "Problèmes de santé / Allergies",
+      "usualFood": "Alimentation habituelle",
+      "specialNotes": "Remarques particulières",
+
+      "placeholders": {
+        "writeProblems": "Indiquez les problèmes de santé, allergies, médicaments…",
+        "usualFood": "Marque, quantité quotidienne, horaires de repas…",
+        "specialNotes": "Caractère, habitudes, toute information importante…"
+      }
+    },
+    "errors": {
+      "selectCheckIn": "Veuillez choisir une date d’arrivée.",
+      "selectCheckOut": "Veuillez choisir une date de départ.",
+      "checkoutAfterCheckin": "La date de départ doit être postérieure à la date d’arrivée.",
+      "firstNameRequired": "Le prénom est requis.",
+      "phoneRequired": "Le numéro de téléphone est requis.",
+      "catNameRequired": "Le nom du chat est requis.",
+      "numberOfCats": "Minimum 1.",
+      "provideLastTreatment": "Veuillez indiquer la date du dernier traitement.",
+      "mustAcceptTerms": "Vous devez accepter les conditions."
+    },
+    "alerts": {
+      "reservationCaptured": "Réservation enregistrée ! Nous vous contacterons pour confirmation."
+    },
+    "buttons": { "reserveNow": "Réserver maintenant" }
+  }
+  ,
+  "productDetails": {
+    "description": "Description",
+    "category": "Catégorie",
+    "addedToCart" : "produit ajouté au panier",
+    "id": "ID",
+    "price": "Prix",
+    "quantity": "Quantité",
+    "addToCart": "Ajouter au panier",
+    "buyNow": "Acheter maintenant",
+    "otherProducts": "Autres produits",
+    "toasts": {
+      "added": "Produit ajouté au panier !",
+      "invalidQty": "Veuillez saisir une quantité valide."
+    },
+    "alt": {
+      "thumb": "Vignette",
+      "main": "Image du produit",
+      "cat": "Image de chat"
+    }
+  }
+  ,
+   "addProduct": {
+    "title": "Ajouter un nouveau produit",
+    "labels": {
+      "name": "Nom du produit",
+      "price": "Prix",
+      "description": "Description",
+      "category": "Catégorie",
+      "images": "Images du produit ({{count}}/10 max)"
+    },
+    "placeholders": {
+      "name": "Saisissez le nom du produit",
+      "price": "Saisissez le prix",
+      "description": "Saisissez la description du produit",
+      "category": "Saisissez la catégorie"
+    },
+    "available": "Disponible",
+    "notAvailable": "Non disponible",
+    "uploadHint": "Cliquez ou glissez-déposez les fichiers pour téléverser",
+    "removeImage": "Supprimer l’image",
+    "submit": "Ajouter le produit",
+    "toasts": {
+      "success": "Produit ajouté avec succès !",
+      "error": "Erreur lors de l’ajout du produit"
+    },
+    "alt": {
+      "preview": "Aperçu de l’image {{index}}"
+    }
   },
-  "productDetails" : {
-    "error" : "sil vous plaît ajoutez des produits au panier avant de procéder au paiement.",
-    "addedToCart": "Produit ajouté au panier."
+   "editProduct": {
+    "title": "Modifier le produit",
+    "labels": {
+      "name": "Nom du produit",
+      "category": "Catégorie",
+      "price": "Prix (DZD)",
+      "stock": "Stock"
+    },
+    "placeholders": {
+      "name": "Saisissez le nom du produit",
+      "category": "Saisissez la catégorie",
+      "price": "Saisissez le prix",
+      "stock": "Saisissez la quantité en stock"
+    },
+    "existingImages": "Images existantes",
+    "addNewImages": "Ajouter de nouvelles images",
+    "uploadHint": "Cliquez ou glissez-déposez les images ici",
+    "uploadSubHint": "Plusieurs images sont prises en charge",
+    "submit": {
+      "update": "Mettre à jour le produit",
+      "updating": "Mise à jour..."
+    },
+    "toasts": {
+      "fetchError": "Erreur lors de la récupération des données du produit",
+      "updateSuccess": "Produit mis à jour avec succès !",
+      "updateError": "Erreur lors de la mise à jour du produit"
+    },
+    "alt": {
+      "existing": "Image du produit {{index}}",
+      "preview": "Aperçu de l’image {{index}}"
+    },
+    "a11y": {
+      "removeExisting": "Supprimer l’image existante",
+      "removeSelected": "Supprimer l’image sélectionnée"
+    }
+  },
+  "adminProducts": {
+    "title": "Gestion des produits",
+    "add": "Ajouter un produit",
+    "searchPlaceholder": "Rechercher des produits...",
+    "searchAria": "Recherche de produits",
+    "labels": {
+      "category": "Catégorie",
+      "price": "Prix",
+      "stock": "Stock"
+    },
+    "toasts": {
+      "deleted": "Produit supprimé avec succès !",
+      "deleteError": "Erreur lors de la suppression du produit",
+      "fetchError": "Erreur lors de la récupération de la liste des produits"
+    },
+    "alt": {
+      "product": "Image du produit"
+    },
+    "a11y": {
+      "edit": "Modifier {{name}}",
+      "delete": "Supprimer {{name}}"
+    }
+  },
+   "appointmentsAdmin": {
+    "title": "Rendez-vous",
+    "loading": "Chargement des rendez-vous...",
+    "confirmDelete" : "Êtes-vous sûr de vouloir supprimer ce rendez-vous ?",
+    "table": {
+      "id": "ID",
+      "client": "Client",
+      "date": "Date",
+      "symptoms": "Symptômes",
+      "actions": "Actions"
+    },
+    "card": {
+      "title": "Rendez-vous",
+      "customer": "Client",
+      "date": "Date",
+      "symptoms": "Symptômes"
+    },
+    "guest": "Invité",
+    "status": {
+      "Confirmed": "Confirmé",
+      "Pending": "En attente",
+      "Cancelled": "Annulé"
+    },
+    "toasts": {
+      "deleted": "Rendez-vous supprimé avec succès",
+      "deleteError": "Erreur lors de la suppression du rendez-vous",
+      "fetchError": "Erreur lors de la récupération des rendez-vous"
+    },
+    "a11y": {
+      "delete": "Supprimer le rendez-vous {{id}}"
+    }
+  },
+   "dashboard": {
+    "a11y": { "stats": "Statistiques du tableau de bord" },
+    "cards": {
+      "users": "Utilisateurs",
+      "products": "Produits",
+      "orders": "Commandes",
+      "appointments": "Rendez-vous"
+    },
+    "sections": {
+      "recentOrders": "Commandes récentes",
+      "recentUsers": "Utilisateurs récents",
+      "recentProducts": "Produits récents",
+      "recentAppointments": "Rendez-vous récents"
+    },
+    "actions": { "viewAll": "Voir tout" },
+    "labels": {
+      "client": "Client",
+      "guest": "Invité",
+      "products": "Produits",
+      "price": "Prix",
+      "stock": "Stock",
+      "email": "Email",
+      "role": "Rôle",
+      "date": "Date"
+    },
+    "status": {
+      "pending": "En attente",
+      "completed": "Terminé",
+      "cancelled": "Annulé",
+      "undefined": "Indéfini"
+    },
+    "alt": { "product": "Image du produit" },
+    "errors": {
+      "data": "Erreur lors de la récupération des données du tableau de bord",
+      "stats": "Erreur lors de la récupération des statistiques du tableau de bord"
+    }
+  },
+   "reservationsAdmin": {
+    "title": "Gestion des réservations",
+    "table": {
+      "customer": "Client",
+      "pet": "Animal",
+      "date": "Date",
+      "status": "Statut",
+      "actions": "Actions"
+    },
+    "card": {
+      "pet": "Animal",
+      "date": "Date",
+      "time": "Heure"
+    },
+    "status": {
+      "Confirmed": "Confirmée",
+      "Pending": "En attente",
+      "Cancelled": "Annulée"
+    },
+    "a11y": {
+      "edit": "Modifier la réservation de {{name}}",
+      "delete": "Supprimer la réservation de {{name}}"
+    }
+  },
+  "ordersAdmin": {
+    "dateFilters": {
+      "all": "Toutes les commandes",
+      "today": "Aujourd'hui",
+      "yesterday": "Hier",
+      "lastWeek": "La semaine dernière",
+      "lastMonth": "Le mois dernier",
+      "lastYear": "L'année dernière"
+    },
+    "title": "Commandes",
+    "loading": "Chargement des commandes...",
+    "guest": "Invité",
+    "table": {
+      "id": "Commande ID",
+      "customer": "Client",
+      "products": "Produits",
+      "total": "Total",
+      "status": "Statut",
+      "actions": "Actions"
+    },
+    "card": {
+      "title": "Commande",
+      "customer": "Client",
+      "products": "Produits",
+      "total": "Total"
+    },
+    "status": {
+      "Pending": "En attente",
+      "Processing": "En traitement",
+      "Shipped": "Expédiée",
+      "Completed": "Terminée",
+      "Cancelled": "Annulée",
+      "Refunded": "Remboursée"
+    },
+    "toasts": {
+      "fetchError": "Échec du chargement des commandes",
+      "deleted": "Commande supprimée avec succès !",
+      "deleteError": "Échec de la suppression de la commande",
+      "statusUpdated": "Statut mis à jour",
+      "statusError": "Échec de la mise à jour du statut"
+    },
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette commande ?",
+    "a11y": {
+      "delete": "Supprimer la commande",
+      "changeStatus": "Changer le statut de la commande"
+    }
+  },
+  "usersAdmin": {
+    "title": "Gestion des clients",
+    "loading": "Chargement des clients...",
+    "na": "N/D",
+    "table": {
+      "client": "Client",
+      "contact": "Contact",
+      "memberSince": "Membre depuis",
+      "actions": "Actions"
+    },
+    "actions": {
+      "delete": "Supprimer"
+    },
+    "toasts": {
+      "fetchError": "Échec du chargement des clients",
+      "deleted": "Client supprimé avec succès !",
+      "deleteError": "Échec de la suppression du client"
+    },
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce client ?",
+    "a11y": {
+      "delete": "Supprimer le client {{name}}"
+    }
+  },
+
+  "common": {
+    "yes": "Oui",
+    "no": "Non",
+    "na": "N/A",
+    "none": "Aucun"
+  },
+  "reservation": {
+    "loading": "Chargement des détails de la réservation...",
+    "error": "Échec du chargement de la réservation.",
+    "none": "Aucune réservation trouvée.",
+    "title": "Détails de la réservation",
+    "period": {
+      "title": "Période de réservation",
+      "checkIn": "Arrivée",
+      "checkOut": "Départ",
+      "estimatedArrival": "Arrivée estimée"
+    },
+    "owner": {
+      "title": "Informations du propriétaire",
+      "name": "Nom",
+      "phone": "Téléphone",
+      "address": "Adresse"
+    },
+    "cat": {
+      "title": "Informations sur le chat",
+      "breed": "Race",
+      "age": "Âge",
+      "number": "Nombre de chats",
+      "gender": "Sexe",
+      "sterilized": "Stérilisé",
+      "vaccinationNotebook": "Carnet de vaccination",
+      "antiParasiteTreatment": "Traitement antiparasitaire",
+      "lastTreatmentDate": "Date du dernier traitement"
+    },
+    "health": {
+      "title": "Santé & Nourriture",
+      "problems": "Problèmes de santé",
+      "usualFood": "Nourriture habituelle",
+      "specialNotes": "Remarques spéciales"
+    },
+    "services": {
+      "title": "Services supplémentaires",
+      "cleaningDecorating": "Nettoyage & Décoration",
+      "specialMedicalCare": "Soins médicaux spéciaux",
+      "sendPicturesVideos": "Envoyer des photos & vidéos"
+    }
   }
 }
+

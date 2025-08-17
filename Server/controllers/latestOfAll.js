@@ -1,6 +1,6 @@
 const{ StatusCodes }= require("http-status-codes");
 const User = require("../models/users");
-const Appointment = require('../models/Appointments');
+const Appointment = require('../models/appointments');
 const Order = require("../models/orders");
 const Product = require("../models/products");
 

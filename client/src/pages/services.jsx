@@ -1,116 +1,164 @@
-import React from "react";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import animal from '../photo/service/ced.avif';
+import animal2 from '../photo/service/chur.jpg';
+import radio from '../photo/imgs/radio.jpg';
+import alimentation from '../photo/imgs/alimentation.jpg';
+import vaccination from '../photo/imgs/vaccination.jpg';
+import garde from '../photo/imgs/garde.jpg';
+import deta from '../photo/imgs/detartrage.jpg';
+import catHotelImage from '../photo/service/catHotelImage.jpg';
+const OurServices = () => {
+  const { t } = useTranslation();
 
-const ServicesPage = () => {
   const services = [
     {
-      id: 1,
-      title: "Surgery",
-      description: "Professional surgical procedures for your pets performed by our experienced veterinary team.",
-      buttonText: "Read More",
-      color: "bg-indigo-500",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-        </svg>
-      )
+      id: 'consultation',
+      category: t('Services.consultation'),
+      items: [
+        t('Services.consultation_item1'),
+        t('Services.consultation_item2'),
+        t('Services.consultation_item3'),
+      ],
+      image: animal,
+      alt: t('Services.consultation_alt'),
     },
     {
-      id: 2,
-      title: "Healthcare",
-      description: "Comprehensive health checkups and preventive care to keep your pet in optimal condition.",
-      buttonText: "Read More",
-      color: "bg-indigo-500",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      )
+      id: 'surgery',
+      category: t('Services.surgery'),
+      items: [
+        t('Services.surgery_item1'),
+        t('Services.surgery_item2'),
+        t('Services.surgery_item3'),
+      ],
+      image: animal2,
+      alt: t('Services.surgery_alt'),
     },
     {
-      id: 3,
-      title: "Grooming",
-      description: "Professional grooming services to keep your pet looking and feeling their best.",
-      buttonText: "Read More",
-      color: "bg-indigo-500",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-        </svg>
-      )
+      id: 'radiography',
+      category: t('Services.radiography'),
+      items: [
+        t('Services.radiography_item1'),
+        t('Services.radiography_item2'),
+        t('Services.radiography_item3'),
+      ],
+      image: radio,
+      alt: t('Services.radiography_alt'),
     },
     {
-      id: 4,
-      title: "Daycare",
-      description: "Safe and fun daycare services for when you need someone to look after your pet.",
-      buttonText: "Read More",
-      color: "bg-indigo-500",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-        </svg>
-      )
+      id: 'nutrition',
+      category: t('Services.nutrition'),
+      items: [
+        t('Services.nutrition_item1'),
+        t('Services.nutrition_item2'),
+        t('Services.nutrition_item3'),
+      ],
+      image: alimentation,
+      alt: t('Services.nutrition_alt'),
     },
     {
-      id: 5,
-      title: "Make an Appointment",
-      description: "Schedule a visit with our veterinary professionals at your convenience.",
-      buttonText: "Book Now",
-      color: "bg-orange-500",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      )
+      id: 'vaccination',
+      category: t('Services.vaccination'),
+      items: [
+        t('Services.vaccination_item1'),
+        t('Services.vaccination_item2'),
+        t('Services.vaccination_item3'),
+      ],
+      image: vaccination,
+      alt: t('Services.vaccination_alt'),
     },
+    {
+      id: 'hospitalization',
+      category: t('Services.hospitalization'),
+      items: [
+        t('Services.hospitalization_item1'),
+        t('Services.hospitalization_item2'),
+        t('Services.hospitalization_item3'),
+      ],
+      image: garde,
+      alt: t('Services.hospitalization_alt'),
+    },
+    {
+      id: 'grooming',
+      category: t('Services.grooming'),
+      items: [
+        t('Services.grooming_item1'),
+        t('Services.grooming_item2'),
+        t('Services.grooming_item3'),
+      ],
+      image: deta,
+      alt: t('Services.grooming_alt'),
+    },
+{
+  id: 'catHotel',
+  category: t('Services.catHotel'),
+  items: [
+    t('Services.catHotel_item1'), // e.g., "Private suites with cozy bedding"
+    t('Services.catHotel_item2'), // e.g., "Daily playtime and social interaction"
+    t('Services.catHotel_item3'), // e.g., "24/7 monitoring and care"
+  ],
+  image: catHotelImage, // Replace with your actual image variable
+  alt: t('Services.catHotel_alt'), // e.g., "Luxury cat hotel room"
+}
   ];
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header Section */}
-      <header className="py-12 bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
-            Our Veterinary Services
-          </h1>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive care for your beloved pets
-          </p>
-        </div>
-      </header>
+  const CheckIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+    </svg>
+  );
 
-      {/* Services Section */}
-      <main className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  return (
+    <section className="bg-gradient-to-b from-gray-50 to-gray-100 py-16 w-full" style={{ fontFamily: "Kiwi Maru, serif" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <header className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+            {t('Services.title')}
+          </h1>
+          <p className="mt-5 max-w-xl mx-auto text-xl text-gray-500">
+            {t('Services.subtitle')}
+          </p>
+        </header>
+
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {services.map((service) => (
-            <article 
+            <article
               key={service.id}
-              className={`${service.color} rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl`}
+              className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 
+              hover:shadow-xl hover:-translate-y-1 flex flex-col h-full w-full"
               itemScope
               itemType="https://schema.org/Service"
             >
-              <div className="p-8 text-center text-white">
-                <div className="mx-auto h-16 w-16 flex items-center justify-center mb-4">
-                  {service.icon}
-                </div>
-                <h2 className="text-2xl font-bold mb-4" itemProp="name">
-                  {service.title}
+              <div className="h-48 overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.alt}
+                  className="w-full h-full object-cover transform hover:scale-105 transition duration-500"
+                  loading="lazy"
+                  itemProp="image"
+                />
+              </div>
+              <div className="p-6 flex-grow">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4" itemProp="name">
+                  {service.category}
                 </h2>
-                <p className="mb-6 opacity-90" itemProp="description">
-                  {service.description}
-                </p>
-                <button 
-                  className="bg-white text-gray-800 font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-gray-100 transition duration-300"
-                  aria-label={`Learn more about ${service.title}`}
-                >
-                  {service.buttonText}
-                </button>
+                <ul className="space-y-3 text-gray-600" itemProp="description">
+                  {service.items.map((item, idx) => (
+                    <li key={`${service.id}-${idx}`} className="flex items-start">
+                      <span className="bg-orange-400 text-white rounded-full w-5 h-5 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                        <CheckIcon />
+                      </span>
+                      <span className="text-gray-700">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </article>
           ))}
-        </section>
-      </main>
-    </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default ServicesPage;
+export default OurServices;

@@ -31,8 +31,8 @@ const orderSchema = new mongoose.Schema({
 
     status : {
         type : String,
-        enum : ["pending" , "shipped" , "delivered" , "cancelled" , "confirmed"],
-        default : "pending",
+        enum : ["Pending", "Processing", "Shipped", "Completed", "Cancelled", "Refunded"],
+        default : "Pending",
     },
 
     phoneNb:{
@@ -64,7 +64,7 @@ const orderSchema = new mongoose.Schema({
     },
     deliveryMethod : {
         type : String,
-        enum : ["a domicile", "au bureau"],
+        enum : ["a Domicile", "au Bureau" , "للمنزل" , "للمكتب"],
         default : "a domicile"
     }
 

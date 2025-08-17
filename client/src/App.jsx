@@ -13,6 +13,7 @@ import Users from "./pages/Users.jsx";
 import Orders from "./pages/Orders.jsx";
 import Appointments from "./pages/Appointments.jsx";
 import Reservations from "./pages/Reservations.jsx";
+import ReservationDetails from "./pages/reservationDetails.jsx";
 import AdminProducts from "./pages/AdminProducts.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import AddProduct from "./pages/AddProduct.jsx";
@@ -112,13 +113,19 @@ function App() {
           }
         />
         <Route
-          path="/dashboard/products/:id"
+          path="/dashboard/AdminProducts/:id"
           element={
             <ProtectedRouteFail>
               <AdminProductDetails />
             </ProtectedRouteFail>
           }
         />
+       <Route path="/dashboard/reservations/:id"
+        element={
+          <ProtectedRouteFail>
+            <ReservationDetails />
+          </ProtectedRouteFail>
+        } />
         <Route path="/signUp" element={<SignUp />} />
       </Routes>
       <Footer />
