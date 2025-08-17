@@ -162,6 +162,71 @@
     "send": "إرسال الرسالة",
     "doctor_title": "الطبيب البيطري الرئيسي"
   },
+  "products": {
+  "title": "منتجاتنا",
+  "searchImageAlt": "بحث عن المنتجات",
+  "searchPlaceholder": "ما الذي تبحث عنه؟",
+  "noProducts": "لا توجد منتجات",
+  "currency": "دج",
+  "categories": {
+    "all": "الكل",
+    "dogs": "كلاب",
+    "cats": "قطط",
+    "birds": "طيور",
+    "fish": "أسماك",
+    "reptiles": "زواحف"
+  }
+},
+"cart": {
+  "title": "سلة التسوق",
+  "catImageAlt": "صورة قطة",
+  "headers": {
+    "name": "الاسم",
+    "quantity": "الكمية",
+    "price": "السعر",
+    "remove": "إزالة"
+  },
+  "currency": "دج",
+  "emptyMessage": "سلة التسوق فارغة",
+  "continueShopping": "مواصلة التسوق",
+  "summary": {
+    "title": "ملخص الطلب",
+    "orderTotal": "إجمالي الطلب",
+    "delivery": "خدمة التوصيل",
+    "total": "المجموع"
+  },
+  "checkoutButton": "إتمام الشراء",
+  "item": "عنصر",
+  "items": "عناصر"
+},
+"checkout": {
+  "title": "الدفع",
+  "dogImageAlt": "صورة كلب",
+  "contactInfo": "معلومات الاتصال",
+  "firstName": "الاسم الأول",
+  "firstNamePlaceholder": "الاسم الأول",
+  "lastName": "الاسم الأخير",
+  "lastNamePlaceholder": "الاسم الأخير",
+  "phoneNumber": "رقم الهاتف",
+  "phonePlaceholder": "رقم الهاتف",
+  "wilaya": "الولاية",
+  "address": "العنوان",
+  "addressPlaceholder": "العنوان",
+  "deliveryCompanies": "شركات التوصيل",
+  "deliveryCompaniesList": ["ياليدين", "دي إتش دي", "زد آر اكسبرس", "سارل اكسبرس"],
+  "deliveryMethod": "طريقة التوصيل",
+  "deliveryMethods": ["المنزل", "المكتب"],
+  "item": "عنصر",
+  "items": "عناصر",
+  "quantity": "الكمية",
+  "total": "المجموع",
+  "subtotal": "المجموع الفرعي",
+  "deliveryService": "خدمة التوصيل",
+  "currency": "دج",
+  "orderButton": "طلب",
+  "successMessage": "تم إنشاء الطلب بنجاح!",
+  "errorMessage": "خطأ في إنشاء الطلب"
+},
   "dashboard": {
     "totalSales": "إجمالي المبيعات",
     "products": "المنتجات",

@@ -169,7 +169,72 @@
     "send": "Envoyer le message",
     "doctor_title":"Vétérinaire principal"
   },
+"products": {
+  "title": "Nos Produits",
+  "searchImageAlt": "Recherche de produits",
+  "searchPlaceholder": "Que recherchez-vous ?",
+  "noProducts": "Aucun produit trouvé",
+  "currency": "DZD",
+  "categories": {
+    "all": "Tous",
+    "dogs": "Chiens",
+    "cats": "Chats",
+    "birds": "Oiseaux",
+    "fish": "Poissons",
+    "reptiles": "Reptiles"
 
+  }
+},
+"cart": {
+  "title": "Panier",
+  "catImageAlt": "Image de chat",
+  "headers": {
+    "name": "Nom",
+    "quantity": "Quantité",
+    "price": "Prix",
+    "remove": "Supprimer"
+  },
+  "currency": "DZD",
+  "emptyMessage": "Votre panier est vide",
+  "continueShopping": "Continuer vos achats",
+  "summary": {
+    "title": "Résumé",
+    "orderTotal": "Total des articles",
+    "delivery": "Frais de livraison",
+    "total": "Total"
+  },
+  "checkoutButton": "Passer la commande",
+  "item": "article",
+  "items": "articles"
+},
+"checkout": {
+  "title": "Paiement",
+  "dogImageAlt": "Image de chien",
+  "contactInfo": "Informations de contact",
+  "firstName": "Prénom",
+  "firstNamePlaceholder": "Prénom",
+  "lastName": "Nom de famille",
+  "lastNamePlaceholder": "Nom de famille",
+  "phoneNumber": "Numéro de téléphone",
+  "phonePlaceholder": "Numéro de téléphone",
+  "wilaya": "Wilaya",
+  "address": "Adresse",
+  "addressPlaceholder": "Adresse",
+  "deliveryCompanies": "Sociétés de livraison",
+  "deliveryCompaniesList": ["Yalidine", "DHD", "ZR express", "SARL express"],
+  "deliveryMethod": "Méthode de livraison",
+  "deliveryMethods": ["Domicile", "Bureau"],
+  "item": "article",
+  "items": "articles",
+  "quantity": "Quantité",
+  "total": "Total",
+  "subtotal": "Sous-total",
+  "deliveryService": "Service de livraison",
+  "currency": "DZD",
+  "orderButton": "Commander",
+  "successMessage": "Commande créée avec succès!",
+  "errorMessage": "Erreur lors de la création de la commande"
+},
   "dashboard": {
     "totalSales": "Ventes totales",
     "products": "Produits",
