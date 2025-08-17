@@ -13,6 +13,7 @@ import Users from "./pages/Users.jsx";
 import Orders from "./pages/Orders.jsx";
 import Appointments from "./pages/Appointments.jsx";
 import Reservations from "./pages/Reservations.jsx";
+import ReservationDetails from "./pages/reservationDetails.jsx";
 import AdminProducts from "./pages/AdminProducts.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import AddProduct from "./pages/AddProduct.jsx";
@@ -24,13 +25,16 @@ import CatHotel from "./pages/CatHotel";
 import SignUp from "./pages/SignUp.jsx";
 import "./i18n/config";
 import {Toaster} from "sonner";
-
+import AdminProductDetails from "./pages/AdminProductDetails.jsx";
+import ProtectedRouteFail from "./pages/protectedRouteFail.jsx";
+import NotAuthenticated from "./pages/NotAuthenticated.jsx";
 function App() {
   return (
     <>
       <Navbar />
         <Toaster position="top-center" richColors closeButton />
       <Routes>
+        
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/services" element={<OurServices />} />
@@ -40,16 +44,88 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/cat-hotel" element={<CatHotel />} />
+        <Route path="/cat-hotel-reservation" element={<CatHotel />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard/AdminProducts" element={<AdminProducts />} />
-        <Route path="/dashboard/Orders" element={<Orders />} />
-        <Route path="/dashboard/Users" element={<Users />} />
-        <Route path="/dashboard/Appointments" element={<Appointments />} />
-        <Route path="/dashboard/Reservations" element={<Reservations />} />
-        <Route path="/dashboard/AdminProducts/add" element={<AddProduct />} />
-        <Route path="/dashboard/AdminProducts/edit/:id" element={<EditProduct />} />
+        <Route path="/not-authenticated" element={<NotAuthenticated />} />
+        {/* Protected Dashboard Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRouteFail>
+              <Dashboard />
+            </ProtectedRouteFail>
+          }
+        />
+        <Route
+          path="/dashboard/AdminProducts"
+          element={
+            <ProtectedRouteFail>
+              <AdminProducts />
+            </ProtectedRouteFail>
+          }
+        />
+        <Route
+          path="/dashboard/Orders"
+          element={
+            <ProtectedRouteFail>
+              <Orders />
+            </ProtectedRouteFail>
+          }
+        />
+        <Route
+          path="/dashboard/Users"
+          element={
+            <ProtectedRouteFail>
+              <Users />
+            </ProtectedRouteFail>
+          }
+        />
+        <Route
+          path="/dashboard/Appointments"
+          element={
+            <ProtectedRouteFail>
+              <Appointments />
+            </ProtectedRouteFail>
+          }
+        />
+        <Route
+          path="/dashboard/Reservations"
+          element={
+            <ProtectedRouteFail>
+              <Reservations />
+            </ProtectedRouteFail>
+          }
+        />
+        <Route
+          path="/dashboard/AdminProducts/add"
+          element={
+            <ProtectedRouteFail>
+              <AddProduct />
+            </ProtectedRouteFail>
+          }
+        />
+        <Route
+          path="/dashboard/AdminProducts/edit/:id"
+          element={
+            <ProtectedRouteFail>
+              <EditProduct />
+            </ProtectedRouteFail>
+          }
+        />
+        <Route
+          path="/dashboard/AdminProducts/:id"
+          element={
+            <ProtectedRouteFail>
+              <AdminProductDetails />
+            </ProtectedRouteFail>
+          }
+        />
+       <Route path="/dashboard/reservations/:id"
+        element={
+          <ProtectedRouteFail>
+            <ReservationDetails />
+          </ProtectedRouteFail>
+        } />
         <Route path="/signUp" element={<SignUp />} />
       </Routes>
       <Footer />

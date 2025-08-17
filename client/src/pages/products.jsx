@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Products() {
   const { t } = useTranslation();
+<<<<<<< HEAD
   const [activeCategory, setActiveCategory] = useState("Dogs");
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
@@ -29,12 +30,59 @@ export default function Products() {
         console.error("Error fetching products:", error);
       }
     };
+=======
+  const i18n = useTranslation().i18n;
+  const [activeCategory, setActiveCategory] = useState("tous");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
+  const categories = ["tous", "chiens", "chats", "oiseaux", "jeux", "accessoires", "nourriture"];
+>>>>>>> upstream/master
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/v1/products");
+      setProducts(response.data.products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  // Filtering logic for category + search
+  useEffect(() => {
+    let filtered = products;
+
+    // Category filter
+    if (activeCategory !== "tous") {
+      filtered = filtered.filter(
+        (p) => p.category.toLowerCase() === activeCategory.toLowerCase()
+      );
+    }
+
+    // Search filter
+    if (searchTerm.trim() !== "") {
+      filtered = filtered.filter((p) =>
+        p.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    setFilteredProducts(filtered);
+  }, [searchTerm, activeCategory, products]);
+
+  useEffect(() => {
     fetchProducts();
   }, []);
 
   return (
+<<<<<<< HEAD
     <div className="max-w-full mx-auto px-6 py-10 flex justify-center flex-col items-center mt-[-100px]">
+=======
+    <div
+      className={`max-w-full mx-auto px-6 py-10 flex justify-center flex-col items-center mt-[-100px] ${i18n.language === "fr" ? "" : "mr-16"}`}
+      style={{ fontFamily: "Kiwi Maru, serif" }}
+    >
+>>>>>>> upstream/master
       {/* Title & Image */}
       <div className="text-center mb-[-15px] flex flex-row items-center justify-center w-[60%] gap-40">
         <h2 className="text-5xl tracking-wide text-shadow-sm text-shadow-gray-500 max-sm:hidden">
@@ -85,9 +133,13 @@ export default function Products() {
       </div>
 
       {/* Products Grid */}
-      {products.length > 0 ? (
+      {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-15">
+<<<<<<< HEAD
           {products.map((product) => (
+=======
+          {filteredProducts.map((product) => (
+>>>>>>> upstream/master
             <Link to={`/products/${product._id}`} key={product._id}>
               <div className="rounded-2xl w-[90%] overflow-hidden shadow-lg border border-gray-600 hover:shadow-xl transition-shadow">
                 <div className="bg-white flex items-center justify-center p-6">
@@ -102,13 +154,25 @@ export default function Products() {
                     {product.price} {t("products.currency")}
                   </p>
                   <p className="text-sm leading-snug">{product.name}</p>
+<<<<<<< HEAD
+=======
+                  <p className="text-xs mt-1 text-gray-700">
+                    {t("products.category")}: {product.category}
+                  </p>
+>>>>>>> upstream/master
                 </div>
               </div>
             </Link>
           ))}
         </div>
       ) : (
+<<<<<<< HEAD
         <p className="text-center text-gray-500">{t("products.noProducts")}</p>
+=======
+        <p className="text-center text-gray-500">
+          {t("products.noProducts")}
+        </p>
+>>>>>>> upstream/master
       )}
     </div>
   );

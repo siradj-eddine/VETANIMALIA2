@@ -18,6 +18,13 @@ const getSingleUser = async(req , res)=>{
     res.status(StatusCodes.OK).json({user})
 }
 
+
+const getCurrentUser = async(req , res)=>{
+    const user = await User.findById(req.user.userID);
+    if(!user) throw new NotFound(`no user with the id : ${req.user.userID}`);
+    res.status(StatusCodes.OK).json({user});
+}
+
 //update user
 const updateUser = async(req , res)=>{
     const {name , phone} = req.body;
@@ -60,10 +67,23 @@ const deleteUser = async(req , res)=>{
     res.status(StatusCodes.OK).send("user deleted successfully");
 }
 
+const makeAdmin = async (req, res) => {
+    const { id: userID } = req.params;
+    const user = await User.findById(userID);
+    if (!user) throw new NotFound(`no user with the id : ${userID}`);
+
+    user.role = "admin";
+    await user.save();
+
+    res.status(StatusCodes.OK).json({ user });
+};
+
 module.exports = {
     getAllUsers,
     getSingleUser,
+    getCurrentUser,
     updateUser,
     uploadAvatar,
     deleteUser,
+    makeAdmin,
 }

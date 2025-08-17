@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { FaPhone, FaMapMarkerAlt, FaCalendarAlt, FaEdit, FaTrash } from "react-icons/fa";
+import { FaPhone, FaCalendarAlt, FaTrash, FaUserShield } from "react-icons/fa";
 import SideBar from "../component/sidebar";
 import axios from "axios";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 export default function Users() {
+  const { i18n } = useTranslation();
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -14,7 +16,7 @@ export default function Users() {
       const response = await axios.get("http://localhost:3000/api/v1/users", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      setCustomers(response.data.users); // assuming your backend returns { users: [...] }
+      setCustomers(response.data.users); // { users: [...] }
     } catch (error) {
       console.error("Error fetching customers:", error);
     } finally {
@@ -41,18 +43,40 @@ export default function Users() {
     }
   };
 
+  // Make Admin
+  const handleMakeAdmin = async (id) => {
+    try {
+      await axios.patch(
+        `http://localhost:3000/api/v1/users/${id}/makeAdmin`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+
+      setCustomers(
+        customers.map((c) =>
+          c._id === id ? { ...c, role: "admin" } : c
+        )
+      );
+
+      toast.success("Utilisateur promu en admin !");
+    } catch (error) {
+      toast.error("Échec de la promotion : " + error.message);
+    }
+  };
+
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-gray-500 text-lg">Loading customers...</p>
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
-
   return (
-    <div className="p-4 md:p-6 ml-16 max-sm:ml-0">
-      <SideBar/>
+    <div className={`p-4 md:p-6 ${i18n.language === "fr" ? "ml-16" : "mr-16"} max-sm:ml-0`}>
+      <SideBar />
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-4 border-b border-gray-200">
           <h3 className="text-lg font-semibold">Customers Management</h3>
@@ -65,8 +89,8 @@ export default function Users() {
               <tr>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Client</th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
-
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Membre Depuis</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
@@ -88,15 +112,35 @@ export default function Users() {
                   </td>
                   <td className="px-4 py-4 text-sm text-gray-500">
                     <FaPhone className="inline mr-2 text-gray-400" />
-                    {c.phone ? 0+c.phone : "N/A"}
+                    {c.phone ? "0" + c.phone : "N/A"}
                   </td>
                   <td className="px-4 py-4 text-sm text-gray-500">
                     <FaCalendarAlt className="inline mr-2 text-gray-400" />
                     {c.createdAt?.split("T")[0]}
                   </td>
+                  <td className="px-4 py-4 text-sm">
+                    {c.role === "admin" || c.role === "superAdmin" ? (
+                      <span className="text-green-600 font-medium">Admin</span>
+                    ) : (
+                      <span className="text-gray-500">User</span>
+                    )}
+                  </td>
                   <td className="px-4 py-4 text-sm text-gray-500">
                     <div className="flex space-x-2">
-                      <button className="text-red-400 hover:text-red-600" onClick={() => handleDeleteCustomer(c._id)}><FaTrash /></button>
+                      {c.role !== "admin" && (
+                        <button
+                          className="text-blue-500 hover:text-blue-700"
+                          onClick={() => handleMakeAdmin(c._id)}
+                        >
+                          <FaUserShield />
+                        </button>
+                      )}
+                      <button
+                        className="text-red-400 hover:text-red-600"
+                        onClick={() => handleDeleteCustomer(c._id)}
+                      >
+                        <FaTrash />
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -108,7 +152,10 @@ export default function Users() {
         {/* Mobile Cards */}
         <div className="md:hidden p-4 space-y-4">
           {customers.map((c) => (
-            <div key={c._id} className="border border-gray-200 rounded-lg p-4 space-y-4 shadow-sm">
+            <div
+              key={c._id}
+              className="border border-gray-200 rounded-lg p-4 space-y-4 shadow-sm"
+            >
               <div className="flex items-center mb-3">
                 <img
                   className="h-12 w-12 rounded-full"
@@ -120,14 +167,41 @@ export default function Users() {
                   <p className="text-sm text-gray-500">{c.email}</p>
                 </div>
               </div>
-              <p className="text-sm"><FaPhone className="inline mr-2 text-gray-400" /> {c.phone ? 0+c.phone : "N/A"}</p>
-              <p className="text-sm"><FaCalendarAlt className="inline mr-2 text-gray-400" /> {c.createdAt?.split("T")[0]}</p>
+              <p className="text-sm">
+                <FaPhone className="inline mr-2 text-gray-400" />{" "}
+                {c.phone ? "0" + c.phone : "N/A"}
+              </p>
+              <p className="text-sm">
+                <FaCalendarAlt className="inline mr-2 text-gray-400" />{" "}
+                {c.createdAt?.split("T")[0]}
+              </p>
+              <p className="text-sm">
+                Role:{" "}
+                {c.role === "admin" ? (
+                  <span className="text-green-600 font-medium">Admin</span>
+                ) : (
+                  <span className="text-gray-500">User</span>
+                )}
+              </p>
 
-                <div className="flex space-x-2">
-                  <button className="text-red-400 hover:text-red-600" onClick={() => handleDeleteCustomer(c._id)}><FaTrash /></button>
-                </div>
+              <div className="flex space-x-2">
+                {c.role !== "admin" && (
+                  <button
+                    className="text-blue-500 hover:text-blue-700"
+                    onClick={() => handleMakeAdmin(c._id)}
+                  >
+                    <FaUserShield />
+                  </button>
+                )}
+                <button
+                  className="text-red-400 hover:text-red-600"
+                  onClick={() => handleDeleteCustomer(c._id)}
+                >
+                  <FaTrash />
+                </button>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>

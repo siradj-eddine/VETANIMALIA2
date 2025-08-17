@@ -8,10 +8,14 @@ const {
     updateUser,
     uploadAvatar,
     deleteUser,
-    getLatestUsers
+    getCurrentUser,
+    makeAdmin
 } = require("../controllers/users");
+const { adminAuth, authMiddleware } = require("../middleware/authentication");
 
-router.route("/").get(getAllUsers);
-router.route("/:id").get(getSingleUser).patch(updateUser).delete(deleteUser);
+router.route("/" , adminAuth).get(getAllUsers);
+router.route("/me").get(getCurrentUser);
+router.route("/:id" , adminAuth).get(getSingleUser).patch(updateUser).delete(deleteUser);
 router.post("/uploadAvatar" , singleUpload , uploadAvatar);
+router.patch("/:id/makeAdmin" , adminAuth , makeAdmin);
 module.exports = router;

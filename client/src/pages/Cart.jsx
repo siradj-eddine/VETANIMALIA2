@@ -5,19 +5,32 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import cat from "../photo/imgs/cat-removebg-preview (1) 2.png";
 import { useCart } from "../Context/cartContext";
-import { useTranslation } from "react-i18next";
 
 export default function Cart() {
   const { t } = useTranslation();
   const { cart, setCart } = useCart();
-
-  const updateQty = (id) => {
+  const {t} = useTranslation();
+  const incrementQty = (id) => {
     setCart((prev) =>
       prev.map((item) =>
         item._id === id
           ? { ...item, quantity: item.quantity + 1 }
           : item
       )
+    );
+  };
+
+  const decrementQty = (id) => {
+    setCart((prev) =>
+      prev.map((item) =>{
+        if(item.quantity > 1) {
+          return item._id === id
+          ? { ...item, quantity: item.quantity - 1}
+          : item
+        }else{
+          return item;
+        }
+      })
     );
   };
 
@@ -33,15 +46,15 @@ export default function Cart() {
   const total = subtotal + deliveryFee;
 
   return (
-    <main
+     <main
       className="mx-auto max-w-6xl px-6 py-10"
       style={{ fontFamily: "Kiwi Maru, serif" }}
     >
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-row justify-between mx-8 items-center">
         <h1 className="text-3xl font-semibold mb-8 text-gray-800">
           {t("cart.title")}
         </h1>
-        <img src={cat} alt={t("cart.catImageAlt")} className="w-[8%] max-lg:hidden" />
+        <img src={cat} alt="" className="w-[8%] max-lg:hidden" />
       </div>
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px]">
@@ -67,22 +80,22 @@ export default function Cart() {
                         <img
                           src={it.image[0].url}
                           alt={it.name}
-                          className="w-12 h-12 object-contain mr-8"
+                          className="w-12 h-12 object-contain "
                         />
                       )}
-                      <span className="font-medium text-gray-800">
+                      <span className="font-medium text-gray-800 mx-8">
                         {it.name}
                       </span>
                     </div>
 
                     <div className="flex justify-center py-4">
-                      <IconButton onClick={() => updateQty(it.id, -1)}>
+                      <IconButton onClick={() => decrementQty(it._id)}>
                         <RemoveIcon />
                       </IconButton>
                       <span className="mx-2 border-2 px-8 border-orange-400 rounded-full">
                         {it.quantity}
                       </span>
-                      <IconButton onClick={() => updateQty(it._id)}>
+                      <IconButton onClick={() => incrementQty(it._id)}>
                         <AddIcon />
                       </IconButton>
                     </div>

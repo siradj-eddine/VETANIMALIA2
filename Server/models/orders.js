@@ -7,6 +7,11 @@ const orderSchema = new mongoose.Schema({
         ref : "User",
     },
 
+    name : {
+        type : String,
+        required : true,
+    },
+
     totalAmount : {
         type : Number,
         required : true
@@ -27,7 +32,11 @@ const orderSchema = new mongoose.Schema({
     status : {
         type : String,
         enum : ["Pending", "Processing", "Shipped", "Completed", "Cancelled", "Refunded"],
+<<<<<<< HEAD
         default : "pending",
+=======
+        default : "Pending",
+>>>>>>> upstream/master
     },
 
     phoneNb:{
@@ -56,6 +65,11 @@ const orderSchema = new mongoose.Schema({
 
     additional_Info:{
         type : String,
+    },
+    deliveryMethod : {
+        type : String,
+        enum : ["a Domicile", "au Bureau" , "للمنزل" , "للمكتب"],
+        default : "a domicile"
     }
 
 } , {timestamps : true});

@@ -11,10 +11,13 @@ export default function EditProduct() {
     name: "",
     category: "",
     price: "",
-    stock: "",
+    available: false,
     images: [],
     newImages: [],
   });
+
+  console.log(product);
+  
 
   const [loading, setLoading] = useState(false);
 
@@ -24,12 +27,12 @@ export default function EditProduct() {
         const response = await axios.get(
           `http://localhost:3000/api/v1/products/${id}`
         );
-        const { name, category, price, stock, image } = response.data;
+        const { name, category, price, available, image } = response.data;
         setProduct({
           name,
           category,
           price,
-          stock,
+          available,
           images: image || [],
           newImages: [],
         });
@@ -78,11 +81,11 @@ export default function EditProduct() {
       formData.append("name", product.name);
       formData.append("category", product.category);
       formData.append("price", product.price);
-      formData.append("stock", product.stock);
+      formData.append("available", product.available);
       product.newImages.forEach((file) => formData.append("image", file));
 
       await axios.patch(`http://localhost:3000/api/v1/products/${id}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
 
       toast.success("Product updated successfully!");
@@ -100,7 +103,7 @@ export default function EditProduct() {
     <SideBar />
 
       <main className="flex-1 p-6">
-        <h2 className="text-2xl font-bold mb-6 text-center">Edit Product</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Modifier le produit</h2>
 
         <form
           onSubmit={handleSubmit}
@@ -109,14 +112,14 @@ export default function EditProduct() {
           {/* Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Product Name
+              Nom
             </label>
             <input
               type="text"
               name="name"
               value={product.name}
               onChange={handleChange}
-              required
+              
               className="w-full p-2 border border-gray-300 rounded-md"
             />
           </div>
@@ -131,7 +134,7 @@ export default function EditProduct() {
               name="category"
               value={product.category}
               onChange={handleChange}
-              required
+              
               className="w-full p-2 border border-gray-300 rounded-md"
             />
           </div>
@@ -139,33 +142,30 @@ export default function EditProduct() {
           {/* Price */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Price ($)
+              Prix (DZD)
             </label>
             <input
               type="number"
               name="price"
               value={product.price}
               onChange={handleChange}
-              required
               min={0}
               step="0.01"
               className="w-full p-2 border border-gray-300 rounded-md"
             />
           </div>
 
-          {/* Stock */}
-          <div>
+          {/* available */}
+          <div className="flex  gap-3">
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Stock
+              Disponible
             </label>
             <input
-              type="number"
-              name="stock"
-              value={product.stock}
-              onChange={handleChange}
-              required
-              min={0}
-              className="w-full p-2 border border-gray-300 rounded-md"
+              type="checkbox"
+              name="available"
+              checked={product.available}
+              onChange={() => setProduct((prev) => ({ ...prev, available: !prev.available }))}
+              className=""
             />
           </div>
 
@@ -197,7 +197,7 @@ export default function EditProduct() {
           {/* New Images */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Add New Images
+              Ajouter des images
             </label>
 
             <div
@@ -251,7 +251,7 @@ export default function EditProduct() {
             disabled={loading}
             className="bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded-md mt-4"
           >
-            {loading ? "Updating..." : "Update Product"}
+            {loading ? "Modification en cours..." : "Modifier"}
           </button>
         </form>
       </main>

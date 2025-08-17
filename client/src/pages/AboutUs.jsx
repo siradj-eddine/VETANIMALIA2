@@ -1,58 +1,98 @@
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+
 import doc from "../photo/imgs/docts.png";
 import velu from "../photo/imgs/velu.png";
 
 const AboutUs = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
 
   return (
-    <main className="py-6 px-6 max-mx-25 sm:px-6 lg:px-8">
-      <section className="flex flex-col sm:flex-row justify-center items-center gap-8 mb-12 text-center">
-        <div className="sm:w-1/2">
-          <img
-            src={velu}
-            alt={t('About.our_story')}
-            className="w-full h-auto rounded-lg object-cover"
-          />
-        </div>
-        <div className="w-full sm:w-1/2 text-left max-sm:text-center">
-          <h2 className="text-[80px] max-lg:text-[60px] max-sm:text-[40px] font-bold text-gray-800 mb-4">
-            {t('About.our_story')}
-          </h2>
-          <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-            {t('About.our_story_desc')}
-          </p>
-        
-        </div>
-      </section>
+    <main className="min-h-screen bg-gradient-to-b from-[#FAFAFA] to-[#F5F5F5]" style={{ fontFamily: "Kiwi Maru, serif" }}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        {/* OUR STORY */}
+        <section
+          aria-labelledby="our-story-heading"
+          className="relative overflow-hidden rounded-3xl bg-white/70 p-6 sm:p-10 shadow-sm backdrop-blur-sm"
+        >
+          
+          <div className="grid gap-8 lg:grid-cols-2 ">
+            <div className="order-1 lg:order-1">
+              <div className="relative mx-auto aspect-[4/3] max-w-xl overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100">
+                <img
+                  src={velu}
+                  alt={t("About.our_story")}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div className="order-2 lg:order-2 flex flex-col justify-center">
+              <h1 id="our-story-heading" className="text-4xl max-lg:text-3xl max-sm:text-2xl font-bold tracking-tight text-gray-900">
+                {t("About.our_story")}
+              </h1>
+              <p className="mt-4 text-lg leading-relaxed text-gray-700">
+                {t("About.our_story_desc")}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center rounded-xl bg-[var(--mainOrange)] px-5 py-2.5 text-white shadow hover:brightness-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--mainOrange)]/60"
+                >
+                  {t("About.cta.contactUs", { defaultValue: "Contact us" })}
+                </Link>
+                <Link
+                  to="/services"
+                  className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-2.5 text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400/50"
+                >
+                  {t("About.cta.viewServices", { defaultValue: "View services" })}
+                </Link>
+              </div>
+            </div>
 
-      <section className="mainOrange pt-10 px-8 rounded-3xl mb-3 text-center">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
-          <div className="w-full sm:w-1/2">
-            <img
-              src={doc}
-              alt={t('About.join_us')}
-              className="w-full mb-0 h-auto rounded-lg object-cover"
-            />
+            
           </div>
-          <div className="w-full sm:w-1/2 text-center pb-2">
-            <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
-              {t('About.join_us')}
-            </h2>
-            <p className="text-lg text-gray-800 mb-6 leading-relaxed">
-              {t('About.join_us_desc')}
-            </p>
-            <div className="flex justify-center items-center space-x-15">
-              <Link to="/SignUp">
-                <button className="px-12 py-4 bg-black text-white rounded-full hover:bg-orange-900 transition duration-300">
-                  {t('About.join_button')}
-                </button>
-              </Link>  
+
+          <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-[var(--mainOrange)] to-transparent" />
+        </section>
+
+        {/* JOIN US */}
+        <section
+          aria-labelledby="join-us-heading"
+          className="mt-10 rounded-3xl bg-[var(--mainOrange)] p-6 sm:p-8"
+        >
+          <div className="grid gap-8 lg:grid-cols-2">
+            <div className="order-2 lg:order-1 flex items-center">
+              <div className={`w-full ${isRTL ? "text-right" : "text-left"}`}>
+                <h2 id="join-us-heading" className="text-3xl sm:text-4xl font-extrabold text-amber-50">
+                  {t("About.join_us")}
+                </h2>
+                <p className="mt-3 text-lg leading-relaxed  text-amber-50">
+                  {t("About.join_us_desc")}
+                </p>
+                <div className="mt-6">
+                  <Link to="/SignUp" className="inline-flex rounded-full bg-black px-8 py-3 font-medium text-white shadow hover:bg-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/50">
+                    {t("About.join_button")}
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <div className="relative mx-auto aspect-[4/3] max-w-xl overflow-hidden rounded-2xl bg-white  shadow-lg">
+                <img
+                  src={doc}
+                  alt={t("About.join_us")}
+                  className="h-full w-full rounded-xl object-cover"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
   );
 };

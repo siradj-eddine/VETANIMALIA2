@@ -4,10 +4,13 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import RegisterImage from "../photo/imgs/register2.jpg";
+import { useUser } from "../Context/UserContext";
 
 const SignupPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const {setUser} = useUser();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,7 +27,7 @@ const SignupPage = () => {
         { name, email, password, phone }
       );
       localStorage.setItem("token", res.data.token);
-
+      setUser(res.data.user);
       toast.success(t("signup.success"));
       navigate("/");
     } catch (err) {

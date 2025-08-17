@@ -1,4 +1,5 @@
- { "hero": {
+{
+  "hero": {
     "altText": "كلب",
     "title1": "عيادة بيطرية",
     "title2": "VETANIMALIA",
@@ -89,15 +90,16 @@
     "products": "المنتجات",
     "contact": "اتصل بنا",
     "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
     "appointment": "موعد",
     "signup": "إنشاء حساب",
     "dashboard": "لوحة التحكم",
     "catHotel": "فندق القطط"
   },
-    "sidebar": {
+  "sidebar": {
     "toggle_menu": "إظهار / إخفاء القائمة",
     "title": "لوحة التحكم",
-    "dashboard": " لوحة القيادة  " ,
+    "dashboard": " لوحة القيادة  ",
     "products": "المنتجات",
     "orders": "الطلبات",
     "users": "المستخدمون",
@@ -139,7 +141,11 @@
     "read_more": "اقرأ المزيد",
     "join_button": "انضم إلينا",
     "our_story_desc": "في VETANIMALIA، نحن شغوفون برفاهية الحيوانات. يلتزم فريقنا بتقديم أفضل رعاية ممكنة.",
-    "join_us_desc": "انضم إلى فريقنا الديناميكي وساهم في إحداث فرق في حياة الحيوانات."
+    "join_us_desc": "انضم إلى فريقنا الديناميكي وساهم في إحداث فرق في حياة الحيوانات.",
+    "cta": {
+      "contactUs": "اتصل بنا",
+      "viewServices": "عرض الخدمات"
+    }
   },
   "contact": {
     "title": "اتصل بنا",
@@ -163,6 +169,7 @@
     "doctor_title": "الطبيب البيطري الرئيسي"
   },
   "products": {
+<<<<<<< HEAD
   "title": "منتجاتنا",
   "searchImageAlt": "بحث عن المنتجات",
   "searchPlaceholder": "ما الذي تبحث عنه؟",
@@ -233,7 +240,80 @@
     "orders": "الطلبات",
     "customers": "العملاء",
     "recentOrders": "الطلبات الأخيرة"
+=======
+    "title": "منتجاتنا",
+    "searchImageAlt": "بحث عن المنتجات",
+    "searchPlaceholder": "ما الذي تبحث عنه؟",
+    "noProducts": "لا توجد منتجات",
+    "currency": "دج",
+    "categories": {
+      "all": "الكل",
+      "dogs": "كلاب",
+      "cats": "قطط",
+      "birds": "طيور",
+      "fish": "أسماك",
+      "reptiles": "زواحف"
+    }
+>>>>>>> upstream/master
   },
+  "cart": {
+    "title": "سلة التسوق",
+    "catImageAlt": "صورة قطة",
+    "headers": {
+      "name": "الاسم",
+      "quantity": "الكمية",
+      "price": "السعر",
+      "remove": "إزالة"
+    },
+    "currency": "دج",
+    "emptyMessage": "سلة التسوق فارغة",
+    "continueShopping": "مواصلة التسوق",
+    "summary": {
+      "title": "ملخص الطلب",
+      "orderTotal": "إجمالي الطلب",
+      "delivery": "خدمة التوصيل",
+      "total": "المجموع"
+    },
+    "checkoutButton": "إتمام الشراء",
+    "item": "عنصر",
+    "items": "عناصر"
+  },
+  "checkout": {
+      "deliveryMethod1" : "للمكتب",
+    "deliveryMethod2" : "للمنزل",
+    "title": "الدفع",
+    "dogImageAlt": "صورة كلب",
+    "contactInfo": "معلومات الاتصال",
+    "firstName": "الاسم الأول",
+    "firstNamePlaceholder": "الاسم الأول",
+    "lastName": "الاسم الأخير",
+    "lastNamePlaceholder": "الاسم الأخير",
+    "phoneNumber": "رقم الهاتف",
+    "phonePlaceholder": "رقم الهاتف",
+    "wilaya": "الولاية",
+    "address": "العنوان",
+    "addressPlaceholder": "العنوان",
+    "deliveryCompanies": "شركات التوصيل",
+    "deliveryCompaniesList": [
+      "ياليدين",
+      "دي إتش دي",
+      "زد آر اكسبرس",
+      "سارل اكسبرس"
+    ],
+    "deliveryMethod": "طريقة التوصيل",
+    "deliveryMethods": ["المنزل", "المكتب"],
+    "item": "عنصر",
+    "items": "عناصر",
+    "quantity": "الكمية",
+    "total": "المجموع",
+    "subtotal": "المجموع الفرعي",
+    "deliveryService": "خدمة التوصيل",
+    "currency": "دج",
+    "orderButton": "طلب",
+    "successMessage": "تم إنشاء الطلب بنجاح!",
+    "errorMessage": "خطأ في إنشاء الطلب"
+  },
+ 
   "table": {
     "orderId": "رقم الطلب",
     "customer": "العميل",
@@ -248,6 +328,8 @@
     "cancelled": "ملغي"
   },
   "login": {
+    "success" : "تم تسجيل الدخول بنجاح!",
+    "error": "خطأ في تسجيل الدخول. يرجى التحقق من بيانات الاعتماد الخاصة بك.",
     "title": "تسجيل الدخول",
     "subtitle": "ادخل إلى حسابك الشخصي في VETANIMALIA",
     "welcome": "مرحبًا بعودتك",
@@ -258,7 +340,7 @@
     "no_account": "لا تملك حسابًا؟",
     "signup": "إنشاء حساب"
   },
-    "signup": {
+  "signup": {
     "title": "إنشاء حساب جديد",
     "subtitle": "انضم إلينا اليوم وتمتع بجميع المزايا.",
     "create_account": "إنشاء حساب",
@@ -276,7 +358,7 @@
     "have_account": "هل لديك حساب بالفعل؟",
     "login": "تسجيل الدخول",
     "image_alt": "صورة توضيحية لإنشاء الحساب",
-    "welcome":"مرحبًا بكم في VETANIMALIA",
+    "welcome": "مرحبًا بكم في VETANIMALIA",
     "register": "سجل الآن",
     "phone": "رقم الهاتف"
   },
@@ -317,7 +399,6 @@
     "catHotel_item2": "وقت لعب يومي وتفاعل اجتماعي",
     "catHotel_item3": "رعاية ومراقبة على مدار الساعة",
     "catHotel_alt": "غرفة فاخرة في فندق القطط"
-
   },
   "appointment": {
     "title": "حجز موعد",
@@ -332,10 +413,9 @@
       "bird": "طائر",
       "rodent": "قارض",
       "other": "أخرى"
-      
     },
     "success_message": "تم تأكيد الموعد بنجاح!",
-      "sending": "جارٍ إرسال طلب الموعد...",
+    "sending": "جارٍ إرسال طلب الموعد...",
     "symptoms": "الأعراض / سبب الزيارة",
     "privacy_link": "سياسة الخصوصية",
     "owner_placeholder": "أدخل اسم المالك",
@@ -347,5 +427,398 @@
     "privacy": "أوافق على سياسة الخصوصية",
     "submit": "تأكيد الموعد",
     "emergency": "في الحالات الطارئة، يرجى الاتصال على"
+  },
+  "catHotel": {
+    "hotelReservation": { "title": "حجز فندق القطط" },
+    "form": {
+      "checkInDate": "تاريخ الوصول",
+      "checkOutDate": "تاريخ المغادرة",
+      "estimatedArrival": "وقت الوصول المتوقع",
+      "morning": "صباحًا",
+      "evening": "مساءً",
+
+      "ownerInfo": "معلومات المالك",
+      "firstName": "الاسم",
+      "phoneNumber": "رقم الهاتف",
+      "address": "العنوان",
+
+      "additionalServices": "خدمات إضافية (اختياري)",
+      "cleaningDecorating": "تنظيف وتزيين أثناء الإقامة",
+      "specialMedicalCare": "رعاية طبية خاصة",
+      "sendPicturesVideos": "إرسال صور/فيديوهات أثناء الإقامة",
+
+      "requiredDocuments": "الوثائق المطلوبة",
+      "vaccinationRecord": "دفتر التلقيح محدث",
+      "idCardCopy": "نسخة من بطاقة الهوية",
+
+      "agreement": "أوافق على نظام الفندق وأسمح بمعالجة بياناتي لهذا الحجز.",
+
+      "catInfo": "معلومات القطة",
+      "catName": "اسم القطة",
+      "breeds": {
+        "angora": "أنجورا",
+        "persian": "فارسي",
+        "siamese": "سيامي"
+      },
+      "age": "العمر (بالسنوات)",
+      "numberOfCats": "عدد القطط",
+      "gender": "الجنس",
+      "male": "ذكر",
+      "female": "أنثى",
+      "sterilized": "مُعقّم / مُخصى",
+      "yes": "نعم",
+      "no": "لا",
+      "vaccinationNotebook": "دفتر التلقيح",
+      "updated": "محدّث",
+      "notUpdated": "غير محدّث",
+      "antiParasiteTreatment": "علاج مضاد للطفيليات",
+      "lastTreatmentDate": "تاريخ آخر علاج",
+
+      "healthProblems": "مشاكل صحية / حساسية",
+      "usualFood": "الغذاء المعتاد",
+      "specialNotes": "ملاحظات خاصة",
+
+      "placeholders": {
+        "writeProblems": "اذكر المشاكل الصحية أو الحساسية أو الأدوية…",
+        "usualFood": "العلامة التجارية، الكمية يوميًا، أوقات الإطعام…",
+        "specialNotes": "الطبع والعادات وأي معلومات مهمة…"
+      }
+    },
+    "errors": {
+      "selectCheckIn": "يرجى اختيار تاريخ الوصول.",
+      "selectCheckOut": "يرجى اختيار تاريخ المغادرة.",
+      "checkoutAfterCheckin": "يجب أن يكون تاريخ المغادرة بعد تاريخ الوصول.",
+      "firstNameRequired": "الاسم مطلوب.",
+      "phoneRequired": "رقم الهاتف مطلوب.",
+      "catNameRequired": "اسم القطة مطلوب.",
+      "numberOfCats": "الحد الأدنى 1.",
+      "provideLastTreatment": "يرجى إدخال تاريخ آخر علاج.",
+      "mustAcceptTerms": "يجب الموافقة على الشروط."
+    },
+    "alerts": {
+      "reservationCaptured": "تم تسجيل الحجز! سنتواصل معك للتأكيد."
+    },
+    "buttons": { "reserveNow": "احجز الآن" }
+  },
+  "productDetails": {
+    "description": "الوصف",
+    "category": "الفئة",
+    "addedToCart" : "المنتج اضيف الى السلة",
+    "id": "المعرّف",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "addToCart": "أضف إلى السلة",
+    "buyNow": "اشتري الآن",
+    "otherProducts": "منتجات أخرى",
+    "toasts": {
+      "added": "تمت إضافة المنتج إلى السلة!",
+      "invalidQty": "يرجى إدخال كمية صالحة."
+    },
+    "alt": {
+      "thumb": "صورة مصغّرة",
+      "main": "صورة المنتج",
+      "cat": "صورة قطة"
+    }
+  }
+  ,
+  
+  "addProduct": {
+    "title": "إضافة منتج جديد",
+    "labels": {
+      "name": "اسم المنتج",
+      "price": "السعر",
+      "description": "الوصف",
+      "category": "الفئة",
+      "images": "صور المنتج ({count}/10 كحد أقصى)"
+    },
+    "placeholders": {
+      "name": "أدخل اسم المنتج",
+      "price": "أدخل السعر",
+      "description": "أدخل وصف المنتج",
+      "category": "أدخل الفئة"
+    },
+    "available": "متاح",
+    "notAvailable": "غير متاح",
+    "uploadHint": "انقر أو اسحب الملفات للتحميل",
+    "removeImage": "حذف الصورة",
+    "submit": "إضافة المنتج",
+    "toasts": {
+      "success": "تمت إضافة المنتج بنجاح!",
+      "error": "حدث خطأ أثناء إضافة المنتج"
+    },
+    "alt": {
+      "preview": "معاينة الصورة رقم {{index}}"
+    }
+  }
+,
+ "editProduct": {
+    "title": "تعديل المنتج",
+    "labels": {
+      "name": "اسم المنتج",
+      "category": "الفئة",
+      "price": "السعر (دج)",
+      "stock": "المخزون"
+    },
+    "placeholders": {
+      "name": "أدخل اسم المنتج",
+      "category": "أدخل الفئة",
+      "price": "أدخل السعر",
+      "stock": "أدخل الكمية في المخزون"
+    },
+    "existingImages": "الصور الحالية",
+    "addNewImages": "إضافة صور جديدة",
+    "uploadHint": "انقر أو اسحب الصور هنا",
+    "uploadSubHint": "يدعم تحميل عدة صور",
+    "submit": {
+      "update": "تحديث المنتج",
+      "updating": "جارٍ التحديث..."
+    },
+    "toasts": {
+      "fetchError": "حدث خطأ أثناء جلب بيانات المنتج",
+      "updateSuccess": "تم تحديث المنتج بنجاح!",
+      "updateError": "حدث خطأ أثناء تحديث المنتج"
+    },
+    "alt": {
+      "existing": "صورة المنتج رقم {{index}}",
+      "preview": "معاينة الصورة رقم {{index}}"
+    },
+    "a11y": {
+      "removeExisting": "حذف الصورة الحالية",
+      "removeSelected": "حذف الصورة المحددة"
+    }
+  },
+  "adminProducts": {
+    "title": "إدارة المنتجات",
+    "add": "إضافة منتج",
+    "searchPlaceholder": "ابحث عن المنتجات...",
+    "searchAria": "بحث عن المنتجات",
+    "labels": {
+      "category": "الفئة",
+      "price": "السعر",
+      "stock": "المخزون"
+    },
+    "toasts": {
+      "deleted": "تم حذف المنتج بنجاح!",
+      "deleteError": "حدث خطأ أثناء حذف المنتج",
+      "fetchError": "حدث خطأ أثناء جلب قائمة المنتجات"
+    },
+    "alt": {
+      "product": "صورة المنتج"
+    },
+    "a11y": {
+      "edit": "تعديل {{name}}",
+      "delete": "حذف {{name}}"
+    }
+  },
+   "appointmentsAdmin": {
+    "title": "المواعيد",
+    "loading": "جارٍ تحميل المواعيد...",
+    "confirmDelete" : "هل أنت متأكد أنك تريد حذف هذا الموعد؟",
+    "table": {
+      "id": "المعرّف",
+      "client": "العميل",
+      "date": "التاريخ",
+      "symptoms": "الأعراض",
+      "actions": "الإجراءات"
+    },
+    "card": {
+      "title": "موعد",
+      "customer": "العميل",
+      "date": "التاريخ",
+      "symptoms": "الأعراض"
+    },
+    "guest": "زائر",
+    "status": {
+      "Confirmed": "مؤكَّد",
+      "Pending": "قيد الانتظار",
+      "Cancelled": "ملغى"
+    },
+    "toasts": {
+      "deleted": "تم حذف الموعد بنجاح",
+      "deleteError": "حدث خطأ أثناء حذف الموعد",
+      "fetchError": "حدث خطأ أثناء جلب المواعيد"
+    },
+    "a11y": {
+      "delete": "حذف الموعد رقم {{id}}"
+    }
+  },
+    "dashboard": {
+    "a11y": { "stats": "إحصائيات لوحة التحكم" },
+    "cards": {
+      "users": "المستخدمون",
+      "products": "المنتجات",
+      "orders": "الطلبات",
+      "appointments": "المواعيد"
+    },
+    "sections": {
+      "recentOrders": "الطلبات الأخيرة",
+      "recentUsers": "المستخدمون الجدد",
+      "recentProducts": "المنتجات الجديدة",
+      "recentAppointments": "المواعيد الأخيرة"
+    },
+    "actions": { "viewAll": "عرض الكل" },
+    "labels": {
+      "client": "العميل",
+      "guest": "زائر",
+      "products": "المنتجات",
+      "price": "السعر",
+      "stock": "المخزون",
+      "email": "البريد الإلكتروني",
+      "role": "الدور",
+      "date": "التاريخ"
+    },
+    "status": {
+      "pending": "قيد الانتظار",
+      "completed": "مكتمل",
+      "cancelled": "ملغي"
+    },
+    "alt": { "product": "صورة المنتج" },
+    "errors": {
+      "data": "حدث خطأ أثناء جلب بيانات اللوحة",
+      "stats": "حدث خطأ أثناء جلب إحصائيات اللوحة"
+    }
+  },
+  "reservationsAdmin": {
+    "title": "إدارة الحجوزات",
+    "table": {
+      "customer": "العميل",
+      "pet": "الحيوان",
+      "date": "التاريخ",
+      "status": "الحالة",
+      "actions": "الإجراءات"
+    },
+    "card": {
+      "pet": "الحيوان",
+      "date": "التاريخ",
+      "time": "الوقت"
+    },
+    "status": {
+      "Confirmed": "مؤكَّد",
+      "Pending": "قيد الانتظار",
+      "Cancelled": "ملغى"
+    },
+    "a11y": {
+      "edit": "تعديل حجز {{name}}",
+      "delete": "حذف حجز {{name}}"
+    }
+  },
+  "ordersAdmin": {    "dateFilters": {
+      "all": "جميع الطلبات",
+      "today": "اليوم",
+      "yesterday": "أمس",
+      "lastWeek": "الأسبوع الماضي",
+      "lastMonth": "الشهر الماضي",
+      "lastYear": "العام الماضي"
+    },
+    "title": "الطلبات",
+    "loading": "جارٍ تحميل الطلبات...",
+    "guest": "زائر",
+    "table": {
+      "id": "معرّف الطلب",
+      "date": "التاريخ",
+      "customer": "العميل",
+      "products": "المنتجات",
+      "total": "الإجمالي",
+      "status": "الحالة",
+      "actions": "الإجراءات"
+      },
+    "card": {
+      "date": "التاريخ",
+      "title": "طلب",
+      "customer": "العميل",
+      "products": "المنتجات",
+      "total": "الإجمالي"
+    },
+    "status": {
+      "Pending": "قيد الانتظار",
+      "Processing": "قيد المعالجة",
+      "Shipped": "تم الشحن",
+      "Completed": "مكتمل",
+      "Cancelled": "ملغي",
+      "Refunded": "مسترد"
+    },
+    "toasts": {
+      "fetchError": "فشل في جلب الطلبات",
+      "deleted": "تم حذف الطلب بنجاح!",
+      "deleteError": "فشل حذف الطلب",
+      "statusUpdated": "تم تحديث الحالة",
+      "statusError": "فشل تحديث الحالة"
+    },
+    "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا الطلب؟",
+    "a11y": {
+      "delete": "حذف الطلب",
+      "changeStatus": "تغيير حالة الطلب"
+    }
+  },
+    "usersAdmin": {
+    "title": "إدارة العملاء",
+    "loading": "جارٍ تحميل العملاء...",
+    "na": "غير متوفر",
+    "table": {
+      "client": "العميل",
+      "contact": "جهة الاتصال",
+      "memberSince": "عضو منذ",
+      "actions": "إجراءات"
+    },
+    "actions": {
+      "delete": "حذف"
+    },
+    "toasts": {
+      "fetchError": "فشل جلب بيانات العملاء",
+      "deleted": "تم حذف العميل بنجاح",
+      "deleteError": "فشل حذف العميل"
+    },
+    "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا العميل؟",
+    "a11y": {
+      "delete": "حذف العميل {{name}}"
+    }
+  },
+
+  "common": {
+    "yes": "نعم",
+    "no": "لا",
+    "na": "غير متوفر",
+    "none": "لا يوجد"
+  },
+  "reservation": {
+    "loading": "جارٍ تحميل تفاصيل الحجز...",
+    "error": "فشل في جلب تفاصيل الحجز.",
+    "none": "لم يتم العثور على أي حجز.",
+    "title": "تفاصيل الحجز",
+    "period": {
+      "title": "مدة الحجز",
+      "checkIn": "تسجيل الوصول",
+      "checkOut": "تسجيل المغادرة",
+      "estimatedArrival": "وقت الوصول المتوقع"
+    },
+    "owner": {
+      "title": "معلومات المالك",
+      "name": "الاسم",
+      "phone": "رقم الهاتف",
+      "address": "العنوان"
+    },
+    "cat": {
+      "title": "معلومات القط",
+      "breed": "السلالة",
+      "age": "العمر",
+      "number": "عدد القطط",
+      "gender": "الجنس",
+      "sterilized": "مخصي",
+      "vaccinationNotebook": "دفتر التطعيمات",
+      "antiParasiteTreatment": "العلاج ضد الطفيليات",
+      "lastTreatmentDate": "تاريخ آخر علاج"
+    },
+    "health": {
+      "title": "الصحة والطعام",
+      "problems": "المشاكل الصحية",
+      "usualFood": "الطعام المعتاد",
+      "specialNotes": "ملاحظات خاصة"
+    },
+    "services": {
+      "title": "الخدمات الإضافية",
+      "cleaningDecorating": "التنظيف والتزيين",
+      "specialMedicalCare": "رعاية طبية خاصة",
+      "sendPicturesVideos": "إرسال الصور والفيديوهات"
+    }
   }
 }
